@@ -7,7 +7,7 @@ on:
 
 jobs:
   call-workflow:
-    uses: marcusexplores/.github/workflows/deploy-pages.yml@main
+    uses: marcusexplores/.github/.github/workflows/deploy-pages.yml
     with:
       path: './dist'
     secrets: inherit
