@@ -7,6 +7,7 @@ on:
 
 jobs:
   call-workflow:
-    uses: ./.github/workflows/deploy-pages.yml@main # Use @<branch-name> for best practice
+    uses: marcusexplores/.github/workflows/deploy-pages.yml@main
     with:
       path: './dist'
+    secrets: inherit
