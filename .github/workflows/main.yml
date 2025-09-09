@@ -1,4 +1,4 @@
-name: Deploy static content to Pages
+name: Deploy Main Project
 
 on:
   push:
@@ -7,6 +7,6 @@ on:
 
 jobs:
   call-workflow:
-    uses: ./.github/workflows/deploy-pages.yml
+    uses: ./.github/workflows/deploy-pages.yml@main # Use @<branch-name> for best practice
     with:
       path: './dist'
