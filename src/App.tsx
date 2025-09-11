@@ -1,35 +1,64 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import { navBasePath, navPageNames } from "./features/navigation-bar/constants";
+import { Navbar } from "./features/navigation-bar/Navbar";
+import { HomePage } from "./pages/home/HomePage";
+import { TraveloguePage } from "./pages/travelogue/TraveloguePage";
+import { NotFoundPage } from "./pages/not-found/NotFoundPage";
 
-function App() {
-  const [count, setCount] = useState(0)
+const getPageFromPath = () => {
+    const path = window.location.pathname;
+    let pagePath = '';
+    if (path.startsWith(navBasePath)) {
+        pagePath = path.substring(navBasePath.length);
+    } else {
+        pagePath = path;
+    }
+
+    // remove leading slash
+    pagePath = pagePath.startsWith('/') ? pagePath.substring(1) : pagePath;
+
+    return pagePath;
+};
+
+export default function App() {
+  const [currentPage, setCurrentPage] = useState(getPageFromPath());
+
+  useEffect(() => {
+    const handlePopState = (event: PopStateEvent) => {
+      if (event.state && event.state.page) {
+        setCurrentPage(event.state.page);
+      } else {
+        setCurrentPage(getPageFromPath());
+      }
+    };
+
+    window.addEventListener("popstate", handlePopState);
+
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, []);
+
+  // When currentPage changes, scroll to the top of the page.
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentPage]);
+
+  const renderPage = () => {
+    switch (currentPage) {
+      case navPageNames.Travelogue:
+        return <TraveloguePage />;
+      case "":
+        return <HomePage />;
+      default:
+        return <NotFoundPage />;
+    }
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Navbar currentPage={currentPage} onNavigate={setCurrentPage} />
+      {renderPage()}
     </>
-  )
+  );
 }
-
-export default App
