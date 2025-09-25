@@ -426,11 +426,6 @@ h1 {
   }
 
  /* IN USE */  
-  .right-4 {
-    right: calc(var(--spacing) * 4);
-  }
-
- /* IN USE */  
   .left-0 {
     left: calc(var(--spacing) * 0);
   }
@@ -897,11 +892,6 @@ h1 {
   }
 
   /* IN USE */
-  .rounded-xs {
-    border-radius: var(--radius-xs);
-  }
-
-  /* IN USE */
   .border {
     border-style: var(--tw-border-style);
     border-width: 1px;
@@ -1283,11 +1273,6 @@ h1 {
   }
 
   /* IN USE */
-  .opacity-70 {
-    opacity: .7;
-  }
-
-  /* IN USE */
   .shadow-lg {
     --tw-shadow: 0 10px 15px -3px var(--tw-shadow-color, #0000001a), 0 4px 6px -4px var(--tw-shadow-color, #0000001a);
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
@@ -1297,11 +1282,6 @@ h1 {
   .shadow-md {
     --tw-shadow: 0 4px 6px -1px var(--tw-shadow-color, #0000001a), 0 2px 4px -2px var(--tw-shadow-color, #0000001a);
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
-  }
-
-  /* IN USE */
-  .ring-offset-background {
-    --tw-ring-offset-color: var(--background);
   }
 
   /* IN USE */
@@ -1328,13 +1308,6 @@ h1 {
   /* IN USE */
   .transition-colors {
     transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
-    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
-    transition-duration: var(--tw-duration, var(--default-transition-duration));
-  }
-
-  /* IN USE */
-  .transition-opacity {
-    transition-property: opacity;
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
@@ -1506,13 +1479,6 @@ h1 {
 
   /* IN CODE, BUT SEEMS NO EFFECT */
   @media (hover: hover) {
-    .hover\:opacity-100:hover {
-      opacity: 1;
-    }
-  }
-
-  /* IN CODE, BUT SEEMS NO EFFECT */
-  @media (hover: hover) {
     .hover\:shadow-xl:hover {
       --tw-shadow: 0 20px 25px -5px var(--tw-shadow-color, #0000001a), 0 8px 10px -6px var(--tw-shadow-color, #0000001a);
       box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
@@ -1536,28 +1502,9 @@ h1 {
   }
 
   /* IN CODE, BUT SEEMS NO EFFECT */
-  .focus\:ring-ring:focus {
-    --tw-ring-color: var(--ring);
-  }
-
-  /* IN CODE, BUT SEEMS NO EFFECT */
   .focus\:ring-offset-2:focus {
     --tw-ring-offset-width: 2px;
     --tw-ring-offset-shadow: var(--tw-ring-inset, ) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
-  }
-
-  /* IN CODE, BUT SEEMS NO EFFECT */
-  .focus\:outline-hidden:focus {
-    --tw-outline-style: none;
-    outline-style: none;
-  }
-
-  /* IN CODE, BUT SEEMS NO EFFECT */
-  @media (forced-colors: active) {
-    .focus\:outline-hidden:focus {
-      outline-offset: 2px;
-      outline: 2px solid #0000;
-    }
   }
 
   /* IN CODE, BUT SEEMS NO EFFECT */
@@ -1777,16 +1724,6 @@ h1 {
   /* IN USE */
   .data-\[state\=open\]\:animate-in[data-state="open"] {
     animation: enter var(--tw-duration, .15s) var(--tw-ease, ease);
-  }
-
-  /* IN USE */
-  .data-\[state\=open\]\:bg-accent[data-state="open"] {
-    background-color: var(--accent);
-  }
-
-  /* IN USE */
-  .data-\[state\=open\]\:text-muted-foreground[data-state="open"] {
-    color: var(--muted-foreground);
   }
 
   /* IN USE */
