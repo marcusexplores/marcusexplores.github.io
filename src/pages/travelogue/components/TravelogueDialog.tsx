@@ -1,7 +1,7 @@
 import { cn } from "../../../functions/cn";
 import { Root, Portal, Content, Overlay, Title } from "@radix-ui/react-dialog";
 import { CalendarDays, MapPin, ExternalLink } from "lucide-react";
-import type { TravelTrip } from "../interfaces/TravelTrip";
+import type { TravelTrip } from "../data/travel-trips";
 import { Button } from "../../../features/button/Button";
 import { Badge } from "../../../features/badge/Badge";
 

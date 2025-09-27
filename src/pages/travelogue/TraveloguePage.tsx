@@ -1,10 +1,10 @@
 import { useState, useMemo } from "react";
+import type { TravelTrip } from "./data/travel-trips";
+import type { TravelogueFilterState } from "./interfaces/TravelogueFilterState";
+import { travelTrips } from "./data/travel-trips";
 import { TravelogueFilters } from "./components/TravelogueFilters";
 import { TravelTripCard } from "./components/TravelTripCard";
-import type { TravelTrip } from "./interfaces/TravelTrip";
-import type { TravelogueFilterState } from "./interfaces/TravelogueFilterState";
 import { Separator } from "../../features/separator/Separator";
-import { travelTrips } from "./data/travel-trips";
 import { TravelogueDialog } from "./components/TravelogueDialog";
 
 export const TraveloguePage = () => {

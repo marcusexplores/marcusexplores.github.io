@@ -1,6 +1,16 @@
-import type { TravelTrip } from "../interfaces/TravelTrip";
+import type { DeepReadonly } from "../../../types/DeepReadonly";
 
-export const travelTrips: TravelTrip[] = [
+export interface TravelTrip {
+  id: string;
+  title: string;
+  country: string;
+  startDate: string;
+  endDate: string;
+  description?: string;
+  imageUrl?: string;
+}
+
+export const travelTrips: DeepReadonly<TravelTrip[]> = [
   {
     id: "1",
     title: "Adventures in the Swiss Alps",

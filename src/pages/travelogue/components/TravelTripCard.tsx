@@ -2,7 +2,7 @@ import { cn } from "../../../functions/cn";
 import { CalendarDays, MapPin } from "lucide-react";
 import { Badge } from "../../../features/badge/Badge";
 import { badgeVariant } from "../../../features/badge/constants";
-import type { TravelTrip } from "../interfaces/TravelTrip";
+import type { TravelTrip } from "../data/travel-trips";
 
 interface TravelTripCardProps {
   entry: TravelTrip;
