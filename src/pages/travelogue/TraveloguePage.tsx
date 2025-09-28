@@ -110,16 +110,16 @@ export const TraveloguePage = () => {
             {filteredTravelogues.map((entry) => {
               const startDate = new Date(entry.startDate);
               const endDate = new Date(entry.endDate);
-              const formattedDates = `${formatDate(startDate)} - ${formatDate(endDate)}`;
-              const daysBetween = getDaysBetween(startDate, endDate);
+              const dateRange = `${formatDate(startDate)} - ${formatDate(endDate)}`;
+              const days = getDaysBetween(startDate, endDate);
               return (
                 <TravelTripCard 
                   key={entry.id} 
                   title={entry.title}
                   region={entry.region}
-                  dates={formattedDates}
-                  days={daysBetween}
-                  background={entry.imageUrl}
+                  dates={dateRange}
+                  days={days}
+                  image={entry.imageUrl}
                   onClick={() => handleCardClick(entry)}
                 />
               );
@@ -128,11 +128,24 @@ export const TraveloguePage = () => {
         )}
 
         {/* Dialog for showing travelogue details */}
-        <TravelogueDialog
-          entry={selectedEntry}
-          isOpen={isDialogOpen}
-          onClose={handleDialogClose}
-        />
+        {selectedEntry && (() => {
+          const startDate = new Date(selectedEntry.startDate);
+          const endDate = new Date(selectedEntry.endDate);
+          const dateRange = `${formatDate(startDate)} - ${formatDate(endDate)}`;
+          const days = getDaysBetween(startDate, endDate);
+          return (
+            <TravelogueDialog
+              title={selectedEntry.title}
+              region={selectedEntry.region}
+              dates={dateRange}
+              days={days}
+              description={selectedEntry.description}
+              image={selectedEntry.imageUrl}
+              isOpen={isDialogOpen}
+              onClose={handleDialogClose}
+            />
+          );
+        })()}
       </div>
     </div>
   );

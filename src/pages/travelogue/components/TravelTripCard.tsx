@@ -8,11 +8,11 @@ interface TravelTripCardProps {
   region: string;
   dates: string;
   days: number;
-  background?: string;
+  image?: string;
   onClick: () => void;
 }
 
-export const TravelTripCard = ({ title, region, dates, days, background, onClick }: TravelTripCardProps) => {
+export const TravelTripCard = ({ title, region, dates, days, image, onClick }: TravelTripCardProps) => {
   return (
     <div
       className={cn(
@@ -22,10 +22,10 @@ export const TravelTripCard = ({ title, region, dates, days, background, onClick
       onClick={onClick}
     >
       {/* Background Image */}
-      {background && (
+      {image && (
         <div
           className="absolute inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
-          style={{ backgroundImage: `url(${background})` }}
+          style={{ backgroundImage: `url(${image})` }}
         />
       )}
 

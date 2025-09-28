@@ -4,7 +4,7 @@ export interface TravelTrip {
   region: string;
   startDate: string;
   endDate: string;
-  description?: string;
+  description: string;
   imageUrl?: string;
 }
 
