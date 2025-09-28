@@ -6,11 +6,12 @@ import { TravelogueFilters } from "./components/TravelogueFilters";
 import { TravelTripCard } from "./components/TravelTripCard";
 import { Separator } from "../../features/separator/Separator";
 import { TravelogueDialog } from "./components/TravelogueDialog";
+import { formatDate, getDaysBetween } from "./helpers/datetime";
 
 export const TraveloguePage = () => {
   const [filters, setFilters] = useState<TravelogueFilterState>({
     titleSearch: "",
-    country: "",
+    region: "",
     dayRange: ""
   });
 
@@ -27,10 +28,10 @@ export const TraveloguePage = () => {
     setSelectedEntry(null);
   };
 
-  // Get unique countries for the filter dropdown
-  const countries = useMemo(() => {
-    const uniqueCountries = Array.from(new Set(travelTrips.map(trip => trip.country)));
-    return uniqueCountries.sort();
+  // Get unique regions for the filter dropdown
+  const regions = useMemo(() => {
+    const uniqueregions = Array.from(new Set(travelTrips.map(trip => trip.region)));
+    return uniqueregions.sort();
   }, []);
 
   // Filter the travelogues based on current filters
@@ -41,8 +42,8 @@ export const TraveloguePage = () => {
         return false;
       }
 
-      // Country filter
-      if (filters.country && trip.country !== filters.country) {
+      // region filter
+      if (filters.region && trip.region !== filters.region) {
         return false;
       }
 
@@ -50,7 +51,7 @@ export const TraveloguePage = () => {
       if (filters.dayRange) {
         const startDate = new Date(trip.startDate);
         const endDate = new Date(trip.endDate);
-        const daysDifference = Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24)) + 1;
+        const daysDifference = getDaysBetween(startDate, endDate);
 
         switch (filters.dayRange) {
           case "1-3":
@@ -93,7 +94,7 @@ export const TraveloguePage = () => {
           <TravelogueFilters
             filters={filters}
             onFiltersChange={setFilters}
-            countries={countries}
+            regions={regions}
             totalResults={filteredTravelogues.length}
           />
         </div>
@@ -106,13 +107,23 @@ export const TraveloguePage = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredTravelogues.map((entry) => (
-              <TravelTripCard 
-                key={entry.id} 
-                entry={entry} 
-                onClick={() => handleCardClick(entry)}
-              />
-            ))}
+            {filteredTravelogues.map((entry) => {
+              const startDate = new Date(entry.startDate);
+              const endDate = new Date(entry.endDate);
+              const formattedDates = `${formatDate(startDate)} - ${formatDate(endDate)}`;
+              const daysBetween = getDaysBetween(startDate, endDate);
+              return (
+                <TravelTripCard 
+                  key={entry.id} 
+                  title={entry.title}
+                  region={entry.region}
+                  dates={formattedDates}
+                  days={daysBetween}
+                  background={entry.imageUrl}
+                  onClick={() => handleCardClick(entry)}
+                />
+              );
+            })}
           </div>
         )}
 

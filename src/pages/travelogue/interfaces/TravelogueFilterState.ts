@@ -1,5 +1,5 @@
 export interface TravelogueFilterState {
   titleSearch: string;
-  country: string;
+  region: string;
   dayRange: string;
 }

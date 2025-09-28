@@ -1,9 +1,7 @@
-import type { DeepReadonly } from "../../../types/DeepReadonly";
-
 export interface TravelTrip {
   id: string;
   title: string;
-  country: string;
+  region: string;
   startDate: string;
   endDate: string;
   description?: string;
@@ -14,7 +12,7 @@ export const travelTrips: DeepReadonly<TravelTrip[]> = [
   {
     id: "1",
     title: "Adventures in the Swiss Alps",
-    country: "Switzerland",
+    region: "Switzerland",
     startDate: "2024-07-15",
     endDate: "2024-07-22",
     description: "An incredible week hiking through the stunning Swiss Alps, exploring mountain villages and enjoying breathtaking views.",
@@ -23,7 +21,7 @@ export const travelTrips: DeepReadonly<TravelTrip[]> = [
   {
     id: "2",
     title: "Exploring Ancient Rome",
-    country: "Italy",
+    region: "Italy",
     startDate: "2024-05-10",
     endDate: "2024-05-14",
     description: "A fascinating journey through Rome's ancient history, from the Colosseum to the Roman Forum.",
@@ -32,7 +30,7 @@ export const travelTrips: DeepReadonly<TravelTrip[]> = [
   {
     id: "3",
     title: "Cherry Blossom Season in Kyoto",
-    country: "Japan",
+    region: "Japan",
     startDate: "2024-04-01",
     endDate: "2024-04-12",
     description: "Experiencing the magical cherry blossom season in Japan's cultural capital.",
@@ -41,7 +39,7 @@ export const travelTrips: DeepReadonly<TravelTrip[]> = [
   {
     id: "4",
     title: "Weekend in Barcelona",
-    country: "Spain",
+    region: "Spain",
     startDate: "2024-06-08",
     endDate: "2024-06-10",
     description: "A quick but memorable weekend exploring Gaudí's architecture and Barcelona's vibrant food scene.",
@@ -50,7 +48,7 @@ export const travelTrips: DeepReadonly<TravelTrip[]> = [
   {
     id: "5",
     title: "Northern Lights in Iceland",
-    country: "Iceland",
+    region: "Iceland",
     startDate: "2024-02-20",
     endDate: "2024-03-05",
     description: "Two weeks chasing the Northern Lights and exploring Iceland's dramatic landscapes and geothermal wonders.",
@@ -59,7 +57,7 @@ export const travelTrips: DeepReadonly<TravelTrip[]> = [
   {
     id: "6",
     title: "Safari Adventure in Kenya",
-    country: "Kenya",
+    region: "Kenya",
     startDate: "2024-08-12",
     endDate: "2024-08-26",
     description: "An unforgettable safari experience in the Maasai Mara, witnessing the Great Migration.",
@@ -68,7 +66,7 @@ export const travelTrips: DeepReadonly<TravelTrip[]> = [
   {
     id: "7",
     title: "Cultural Immersion in Morocco",
-    country: "Morocco",
+    region: "Morocco",
     startDate: "2024-03-15",
     endDate: "2024-03-25",
     description: "Exploring the souks of Marrakech, the blue city of Chefchaouen, and the Sahara Desert.",
@@ -77,7 +75,7 @@ export const travelTrips: DeepReadonly<TravelTrip[]> = [
   {
     id: "8",
     title: "Island Hopping in Greece",
-    country: "Greece",
+    region: "Greece",
     startDate: "2024-09-01",
     endDate: "2024-09-08",
     description: "A week sailing between the Greek islands, from Santorini to Mykonos, enjoying crystal-clear waters.",
@@ -86,7 +84,7 @@ export const travelTrips: DeepReadonly<TravelTrip[]> = [
   {
     id: "9",
     title: "Business Trip to Singapore",
-    country: "Singapore",
+    region: "Singapore",
     startDate: "2024-01-22",
     endDate: "2024-01-24",
     description: "A brief but efficient business trip with some time to explore the Gardens by the Bay.",
@@ -95,7 +93,7 @@ export const travelTrips: DeepReadonly<TravelTrip[]> = [
   {
     id: "10",
     title: "Road Trip Through New Zealand",
-    country: "New Zealand",
+    region: "New Zealand",
     startDate: "2024-11-10",
     endDate: "2024-12-01",
     description: "Three weeks driving through both North and South Islands, from Auckland to Queenstown.",

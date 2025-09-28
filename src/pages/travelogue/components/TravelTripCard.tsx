@@ -2,28 +2,17 @@ import { cn } from "../../../functions/cn";
 import { CalendarDays, MapPin } from "lucide-react";
 import { Badge } from "../../../features/badge/Badge";
 import { badgeVariant } from "../../../features/badge/constants";
-import type { TravelTrip } from "../data/travel-trips";
 
 interface TravelTripCardProps {
-  entry: TravelTrip;
+  title: string;
+  region: string;
+  dates: string;
+  days: number;
+  background?: string;
   onClick: () => void;
 }
 
-export const TravelTripCard = ({ entry, onClick }: TravelTripCardProps) => {
-  const startDate = new Date(entry.startDate);
-  const endDate = new Date(entry.endDate);
-  const daysDifference =
-    Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24)) +
-    1;
-
-  const formatDate = (date: Date) => {
-    return date.toLocaleDateString("en-US", {
-      month: "short",
-      day: "numeric",
-      year: "numeric",
-    });
-  };
-
+export const TravelTripCard = ({ title, region, dates, days, background, onClick }: TravelTripCardProps) => {
   return (
     <div
       className={cn(
@@ -33,10 +22,10 @@ export const TravelTripCard = ({ entry, onClick }: TravelTripCardProps) => {
       onClick={onClick}
     >
       {/* Background Image */}
-      {entry.imageUrl && (
+      {background && (
         <div
           className="absolute inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
-          style={{ backgroundImage: `url(${entry.imageUrl})` }}
+          style={{ backgroundImage: `url(${background})` }}
         />
       )}
 
@@ -51,25 +40,25 @@ export const TravelTripCard = ({ entry, onClick }: TravelTripCardProps) => {
             variant={badgeVariant.Secondary}
             className="bg-white/20 text-white border-white/30 backdrop-blur-sm"
           >
-            {daysDifference} {daysDifference === 1 ? "day" : "days"}
+            {days} {days === 1 ? "day" : "days"}
           </Badge>
         </div>
 
         {/* Bottom Section - Title, Location, Date */}
         <div className="space-y-3">
           <h3 className="group-hover:text-white/90 transition-colors">
-            {entry.title}
+            {title}
           </h3>
 
           <div className="space-y-2">
             <div className="flex items-center gap-2 text-white/80">
               <MapPin className="h-4 w-4" />
-              <span>{entry.country}</span>
+              <span>{region}</span>
             </div>
             <div className="flex items-center gap-2 text-white/80">
               <CalendarDays className="h-4 w-4" />
               <span>
-                {formatDate(startDate)} - {formatDate(endDate)}
+                {dates}
               </span>
             </div>
           </div>

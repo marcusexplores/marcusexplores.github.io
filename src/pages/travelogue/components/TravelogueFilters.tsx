@@ -1,27 +1,27 @@
 import { useState } from "react";
-import { Search, Filter, X } from "lucide-react";
+import { Filter, X } from "lucide-react";
 import type { TravelogueFilterState } from "../interfaces/TravelogueFilterState";
 import { Badge } from "../../../features/badge/Badge";
-import { Input } from "../../../features/input/Input";
 import { Button } from "../../../features/button/Button";
 import { Select } from "../../../features/select/Select";
 import { SelectContent } from "../../../features/select-content/SelectContent";
 import { SelectItem } from "../../../features/select-item/SelectItem";
 import { SelectTrigger } from "../../../features/select-trigger/SelectTrigger";
 import { SelectValue } from "../../../features/select-value/SelectValue";
+import { InputSearch } from "../../../features/input-search/InputSearch";
 
 
 interface TravelogueFiltersProps {
   filters: TravelogueFilterState;
   onFiltersChange: (filters: TravelogueFilterState) => void;
-  countries: string[];
+  regions: string[];
   totalResults: number;
 }
 
 export function TravelogueFilters({ 
   filters, 
   onFiltersChange, 
-  countries, 
+  regions, 
   totalResults 
 }: TravelogueFiltersProps) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -36,12 +36,12 @@ export function TravelogueFilters({
   const clearFilters = () => {
     onFiltersChange({
       titleSearch: "",
-      country: "",
+      region: "",
       dayRange: ""
     });
   };
 
-  const hasActiveFilters = filters.titleSearch || filters.country || filters.dayRange;
+  const hasActiveFilters = filters.titleSearch || filters.region || filters.dayRange;
 
   return (
     <div className="space-y-4">
@@ -64,29 +64,25 @@ export function TravelogueFilters({
       <div className={`space-y-4 ${isExpanded ? 'block' : 'hidden md:block'}`}>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           {/* Title Search */}
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              placeholder="Search by title..."
-              value={filters.titleSearch}
-              onChange={(e) => handleFilterChange('titleSearch', e.target.value)}
-              className="pl-10"
-            />
-          </div>
+          <InputSearch
+            placeholder="Search by title..."
+            value={filters.titleSearch}
+            onChange={(e) => handleFilterChange('titleSearch', e.target.value)}
+          />
 
-          {/* Country Filter */}
+          {/* region Filter */}
           <Select
-            value={filters.country}
-            onValueChange={(value) => handleFilterChange('country', value === 'all' ? '' : value)}
+            value={filters.region}
+            onValueChange={(value) => handleFilterChange('region', value === 'all' ? '' : value)}
           >
             <SelectTrigger>
-              <SelectValue placeholder="All countries" />
+              <SelectValue placeholder="All regions" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">All countries</SelectItem>
-              {countries.map((country) => (
-                <SelectItem key={country} value={country}>
-                  {country}
+              <SelectItem value="all">All regions</SelectItem>
+              {regions.map((region) => (
+                <SelectItem key={region} value={region}>
+                  {region}
                 </SelectItem>
               ))}
             </SelectContent>
@@ -136,11 +132,11 @@ export function TravelogueFilters({
                 </button>
               </Badge>
             )}
-            {filters.country && (
+            {filters.region && (
               <Badge variant="secondary" className="gap-1">
-                Country: {filters.country}
+                region: {filters.region}
                 <button
-                  onClick={() => handleFilterChange('country', '')}
+                  onClick={() => handleFilterChange('region', '')}
                   className="ml-1 hover:bg-muted-foreground/20 rounded-full p-0.5"
                 >
                   <X className="h-3 w-3" />
