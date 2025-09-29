@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Filter, X } from "lucide-react";
-import { TRAVELOGUE_FILTER_PROPERTY, TRAVELOGUE_FILTER_DURATION_OPTION } from "../constants"
+import { TRAVELOGUE_FILTER_PROPERTY, TRAVELOGUE_FILTER_DURATION_OPTION, TRAVELOGUE_FILTER_REGION_OPTION } from "../constants"
 import type { TravelogueFilterState } from "../types";
 import { Badge } from "../../../features/badge/Badge";
 import { Button } from "../../../features/button/Button";
@@ -74,13 +74,13 @@ export function TravelogueFilters({
           {/* region Filter */}
           <Select
             value={filters.region}
-            onValueChange={(value) => handleFilterChange(TRAVELOGUE_FILTER_PROPERTY.REGION, value === 'all' ? '' : value)}
+            onValueChange={(value) => handleFilterChange(TRAVELOGUE_FILTER_PROPERTY.REGION, value === TRAVELOGUE_FILTER_REGION_OPTION.ALL ? '' : value)}
           >
             <SelectTrigger>
               <SelectValue placeholder="All regions" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">All regions</SelectItem>
+              <SelectItem value={TRAVELOGUE_FILTER_REGION_OPTION.ALL}>All regions</SelectItem>
               {regions.map((region) => (
                 <SelectItem key={region} value={region}>
                   {region}
