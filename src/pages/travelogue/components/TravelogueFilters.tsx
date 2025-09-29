@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Filter, X } from "lucide-react";
-import type { TravelogueFilterState } from "../interfaces/TravelogueFilterState";
+import { TRAVELOGUE_FILTER_PROPERTY, TRAVELOGUE_FILTER_DURATION_OPTION } from "../constants"
+import type { TravelogueFilterState } from "../types";
 import { Badge } from "../../../features/badge/Badge";
 import { Button } from "../../../features/button/Button";
 import { Select } from "../../../features/select/Select";
@@ -35,13 +36,13 @@ export function TravelogueFilters({
 
   const clearFilters = () => {
     onFiltersChange({
-      titleSearch: "",
+      keyword: "",
       region: "",
-      dayRange: ""
+      duration: ""
     });
   };
 
-  const hasActiveFilters = filters.titleSearch || filters.region || filters.dayRange;
+  const hasActiveFilters = filters.keyword || filters.region || filters.duration;
 
   return (
     <div className="space-y-4">
@@ -63,17 +64,17 @@ export function TravelogueFilters({
 
       <div className={`space-y-4 ${isExpanded ? 'block' : 'hidden md:block'}`}>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          {/* Title Search */}
+          {/* Keyword Search */}
           <InputSearch
-            placeholder="Search by title..."
-            value={filters.titleSearch}
-            onChange={(e) => handleFilterChange('titleSearch', e.target.value)}
+            placeholder="Search by keyword..."
+            value={filters.keyword}
+            onChange={(e) => handleFilterChange(TRAVELOGUE_FILTER_PROPERTY.KEYWORD, e.target.value)}
           />
 
           {/* region Filter */}
           <Select
             value={filters.region}
-            onValueChange={(value) => handleFilterChange('region', value === 'all' ? '' : value)}
+            onValueChange={(value) => handleFilterChange(TRAVELOGUE_FILTER_PROPERTY.REGION, value === 'all' ? '' : value)}
           >
             <SelectTrigger>
               <SelectValue placeholder="All regions" />
@@ -90,18 +91,17 @@ export function TravelogueFilters({
 
           {/* Day Range Filter */}
           <Select
-            value={filters.dayRange}
-            onValueChange={(value) => handleFilterChange('dayRange', value === 'all' ? '' : value)}
+            value={filters.duration}
+            onValueChange={(value) => handleFilterChange(TRAVELOGUE_FILTER_PROPERTY.DURATION, value === TRAVELOGUE_FILTER_DURATION_OPTION.ALL ? '' : value)}
           >
             <SelectTrigger>
               <SelectValue placeholder="Any duration" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">Any duration</SelectItem>
-              <SelectItem value="1-3">1-3 days</SelectItem>
-              <SelectItem value="4-7">4-7 days</SelectItem>
-              <SelectItem value="8-14">1-2 weeks</SelectItem>
-              <SelectItem value="15+">2+ weeks</SelectItem>
+              <SelectItem value={TRAVELOGUE_FILTER_DURATION_OPTION.ALL}>Any duration</SelectItem>
+              <SelectItem value={TRAVELOGUE_FILTER_DURATION_OPTION.LESS_THAN_ONE_WEEK}>&le; 1 week</SelectItem>
+              <SelectItem value={TRAVELOGUE_FILTER_DURATION_OPTION.MORE_THAN_ONE_WEEK}>&gt; 1 week</SelectItem>
+              <SelectItem value={TRAVELOGUE_FILTER_DURATION_OPTION.MORE_THAN_TWO_WEEKS}>&gt; 2 weeks</SelectItem>
             </SelectContent>
           </Select>
 
@@ -121,11 +121,11 @@ export function TravelogueFilters({
         {/* Active Filters Display */}
         {hasActiveFilters && (
           <div className="flex flex-wrap gap-2">
-            {filters.titleSearch && (
+            {filters.keyword && (
               <Badge variant="secondary" className="gap-1">
-                Title: "{filters.titleSearch}"
+                Title: "{filters.keyword}"
                 <button
-                  onClick={() => handleFilterChange('titleSearch', '')}
+                  onClick={() => handleFilterChange(TRAVELOGUE_FILTER_PROPERTY.KEYWORD, '')}
                   className="ml-1 hover:bg-muted-foreground/20 rounded-full p-0.5"
                 >
                   <X className="h-3 w-3" />
@@ -134,22 +134,21 @@ export function TravelogueFilters({
             )}
             {filters.region && (
               <Badge variant="secondary" className="gap-1">
-                region: {filters.region}
+                Region: {filters.region}
                 <button
-                  onClick={() => handleFilterChange('region', '')}
+                  onClick={() => handleFilterChange(TRAVELOGUE_FILTER_PROPERTY.REGION, '')}
                   className="ml-1 hover:bg-muted-foreground/20 rounded-full p-0.5"
                 >
                   <X className="h-3 w-3" />
                 </button>
               </Badge>
             )}
-            {filters.dayRange && (
+            {filters.duration && (
               <Badge variant="secondary" className="gap-1">
-                Duration: {filters.dayRange === '15+' ? '2+ weeks' : 
-                          filters.dayRange === '8-14' ? '1-2 weeks' :
-                          filters.dayRange === '4-7' ? '4-7 days' : '1-3 days'}
+                Duration: {filters.duration === TRAVELOGUE_FILTER_DURATION_OPTION.MORE_THAN_TWO_WEEKS ? '2+ weeks' : 
+                          filters.duration === TRAVELOGUE_FILTER_DURATION_OPTION.MORE_THAN_ONE_WEEK ? '1+ weeks' : '1 week'}
                 <button
-                  onClick={() => handleFilterChange('dayRange', '')}
+                  onClick={() => handleFilterChange(TRAVELOGUE_FILTER_PROPERTY.DURATION, '')}
                   className="ml-1 hover:bg-muted-foreground/20 rounded-full p-0.5"
                 >
                   <X className="h-3 w-3" />

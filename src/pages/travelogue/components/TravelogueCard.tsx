@@ -3,7 +3,7 @@ import { CalendarDays, MapPin } from "lucide-react";
 import { Badge } from "../../../features/badge/Badge";
 import { badgeVariant } from "../../../features/badge/constants";
 
-interface TravelTripCardProps {
+interface TravelogueCardProps {
   title: string;
   region: string;
   dates: string;
@@ -12,7 +12,7 @@ interface TravelTripCardProps {
   onClick: () => void;
 }
 
-export const TravelTripCard = ({ title, region, dates, days, image, onClick }: TravelTripCardProps) => {
+export const TravelogueCard = ({ title, region, dates, days, image, onClick }: TravelogueCardProps) => {
   return (
     <div
       className={cn(

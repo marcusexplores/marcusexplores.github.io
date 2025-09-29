@@ -1,18 +1,19 @@
 import { useState, useMemo } from "react";
 import type { TravelTrip } from "./data/travel-trips";
-import type { TravelogueFilterState } from "./interfaces/TravelogueFilterState";
+import type { TravelogueFilterState } from "./types";
 import { travelTrips } from "./data/travel-trips";
 import { TravelogueFilters } from "./components/TravelogueFilters";
-import { TravelTripCard } from "./components/TravelTripCard";
+import { TravelogueCard } from "./components/TravelogueCard";
 import { Separator } from "../../features/separator/Separator";
 import { TravelogueDialog } from "./components/TravelogueDialog";
 import { formatDate, getDaysBetween } from "./helpers/datetime";
+import { TRAVELOGUE_FILTER_DURATION_OPTION } from "./constants";
 
 export const TraveloguePage = () => {
-  const [filters, setFilters] = useState<TravelogueFilterState>({
-    titleSearch: "",
+  const [filterState, setFilterState] = useState<TravelogueFilterState>({
+    keyword: "",
     region: "",
-    dayRange: ""
+    duration: ""
   });
 
   const [selectedEntry, setSelectedEntry] = useState<TravelTrip | null>(null);
@@ -37,33 +38,30 @@ export const TraveloguePage = () => {
   // Filter the travelogues based on current filters
   const filteredTravelogues = useMemo(() => {
     return travelTrips.filter(trip => {
-      // Title search filter
-      if (filters.titleSearch && !trip.title.toLowerCase().includes(filters.titleSearch.toLowerCase())) {
+      // Keyword search filter
+      if (filterState.keyword && !trip.title.toLowerCase().includes(filterState.keyword.toLowerCase())) {
         return false;
       }
 
       // region filter
-      if (filters.region && trip.region !== filters.region) {
+      if (filterState.region && trip.region !== filterState.region) {
         return false;
       }
 
       // Day range filter
-      if (filters.dayRange) {
+      if (filterState.duration) {
         const startDate = new Date(trip.startDate);
         const endDate = new Date(trip.endDate);
         const daysDifference = getDaysBetween(startDate, endDate);
 
-        switch (filters.dayRange) {
-          case "1-3":
-            if (daysDifference < 1 || daysDifference > 3) return false;
+        switch (filterState.duration) {
+          case TRAVELOGUE_FILTER_DURATION_OPTION.LESS_THAN_ONE_WEEK:
+            if (daysDifference < 1 || daysDifference > 7) return false;
             break;
-          case "4-7":
-            if (daysDifference < 4 || daysDifference > 7) return false;
-            break;
-          case "8-14":
+          case TRAVELOGUE_FILTER_DURATION_OPTION.MORE_THAN_ONE_WEEK:
             if (daysDifference < 8 || daysDifference > 14) return false;
             break;
-          case "15+":
+          case TRAVELOGUE_FILTER_DURATION_OPTION.MORE_THAN_TWO_WEEKS:
             if (daysDifference < 15) return false;
             break;
           default:
@@ -73,7 +71,7 @@ export const TraveloguePage = () => {
 
       return true;
     });
-  }, [filters]);
+  }, [filterState]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -92,8 +90,8 @@ export const TraveloguePage = () => {
         {/* Filters */}
         <div className="mb-8">
           <TravelogueFilters
-            filters={filters}
-            onFiltersChange={setFilters}
+            filters={filterState}
+            onFiltersChange={setFilterState}
             regions={regions}
             totalResults={filteredTravelogues.length}
           />
@@ -113,7 +111,7 @@ export const TraveloguePage = () => {
               const dateRange = `${formatDate(startDate)} - ${formatDate(endDate)}`;
               const days = getDaysBetween(startDate, endDate);
               return (
-                <TravelTripCard 
+                <TravelogueCard 
                   key={entry.id} 
                   title={entry.title}
                   region={entry.region}

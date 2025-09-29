@@ -98,5 +98,14 @@ export const travelTrips: DeepReadonly<TravelTrip[]> = [
     endDate: "2024-12-01",
     description: "Three weeks driving through both North and South Islands, from Auckland to Queenstown.",
     imageUrl: "https://images.unsplash.com/photo-1556789483-2d4a13fb8fca?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxOZXclMjBaZWFsYW5kJTIwbGFuZHNjYXBlJTIwbW91bnRhaW5zfGVufDF8fHx8MTc1NzQ4MDQ0MHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+  },
+  {
+    id: "11",
+    title: "Another Road Trip Through New Zealand",
+    region: "New Zealand",
+    startDate: "2024-12-10",
+    endDate: "2024-12-12",
+    description: "Three weeks driving through both North and South Islands, from Auckland to Queenstown.",
+    imageUrl: "https://images.unsplash.com/photo-1556789483-2d4a13fb8fca?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxOZXclMjBaZWFsYW5kJTIwbGFuZHNjYXBlJTIwbW91bnRhaW5zfGVufDF8fHx8MTc1NzQ4MDQ0MHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
   }
 ];
