@@ -1,6 +1,6 @@
 import heroBackgroundImg from '../../assets/home_hero_banner.jpg'
-import { ContentSection } from '../../features/section-content/ContentSection';
-import { CoverSection } from '../../features/section-cover/CoverSection';
+import { SectionContent } from '../../components/section/SectionContent';
+import { SectionCover } from '../../components/section/SectionCover';
 
 export const HomePage = () => (
   <main>
@@ -23,7 +23,7 @@ export const HomePage = () => (
     </header>
 
     {/* Content Section */}
-    <ContentSection>
+    <SectionContent>
       <div className="max-w-4xl mx-auto text-gray-300">
         <h2 className="text-4xl font-bold text-center text-white mb-12">
           Our Content Section
@@ -45,14 +45,14 @@ export const HomePage = () => (
           ac tellus et risus vulputate vehicula.
         </p>
       </div>
-    </ContentSection>
+    </SectionContent>
 
-    <CoverSection backgroundImage="https://placehold.co/1200x400/1a202c/4a5568?text=Another+Section"
+    <SectionCover backgroundImage="https://placehold.co/1200x400/1a202c/4a5568?text=Another+Section"
     >
       {/* Parallax-like section */}
-    </CoverSection>
+    </SectionCover>
 
-    <ContentSection>
+    <SectionContent>
       <div className="max-w-4xl mx-auto text-gray-300">
         <h2 className="text-4xl font-bold text-center text-white mb-12">
           More to Discover
@@ -72,6 +72,6 @@ export const HomePage = () => (
           massa in justo.
         </p>
       </div>
-    </ContentSection>
+    </SectionContent>
   </main>
 );

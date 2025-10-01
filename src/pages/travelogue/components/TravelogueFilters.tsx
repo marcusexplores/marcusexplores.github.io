@@ -4,11 +4,11 @@ import { TRAVELOGUE_FILTER_PROPERTY, TRAVELOGUE_FILTER_DURATION_OPTION, TRAVELOG
 import type { TravelogueFilterState } from "../types";
 import { Badge } from "../../../components/badge/Badge";
 import { Button } from "../../../components/button/Button";
-import { Select } from "../../../features/select/Select";
-import { SelectContent } from "../../../features/select-content/SelectContent";
-import { SelectItem } from "../../../features/select-item/SelectItem";
-import { SelectTrigger } from "../../../features/select-trigger/SelectTrigger";
-import { SelectValue } from "../../../features/select-value/SelectValue";
+import { Select } from "../../../components/select/Select";
+import { SelectContent } from "../../../components/select/SelectContent";
+import { SelectItem } from "../../../components/select/SelectItem";
+import { SelectTrigger } from "../../../components/select/SelectTrigger";
+import { SelectValue } from "../../../components/select/SelectValue";
 import { InputSearch } from "../../../features/input-search/InputSearch";
 
 
