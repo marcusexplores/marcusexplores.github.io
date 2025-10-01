@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { navBasePath, navLinks } from './constants';
-import { MenuIcon } from './components/MenuIcon';
-import { CloseIcon } from './components/CloseIcon';
+import { isHomePage } from './helpers';
+import { NavigationMenuIcon } from './NavigationMenuIcon';
+import { NavigationCloseIcon } from './NavigationCloseIcon';
 
 interface NavbarProps {
   currentPage: string;
@@ -9,7 +10,7 @@ interface NavbarProps {
 }
 
 // The Navigation Bar Component
-export const Navbar = ({ currentPage, onNavigate }: NavbarProps) => {
+export const NavigationBar = ({ currentPage, onNavigate }: NavbarProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -35,7 +36,7 @@ export const Navbar = ({ currentPage, onNavigate }: NavbarProps) => {
 
   const handleNavClick = (path: string) => {
     if (currentPage !== path) {
-        const url = path === '' ? `${navBasePath}/` : `${navBasePath}/${path}`;
+        const url = isHomePage(path) ? `${navBasePath}/` : `${navBasePath}/${path}`;
         window.history.pushState({ page: path }, '', url);
         onNavigate(path);
     }
@@ -43,7 +44,7 @@ export const Navbar = ({ currentPage, onNavigate }: NavbarProps) => {
   };
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ease-in-out ${isScrolled ? 'bg-black shadow-lg' : 'bg-transparent'}`}>
+    <nav className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ease-in-out ${isHomePage(currentPage) ? (isScrolled ? 'bg-black shadow-lg' : 'bg-transparent') : 'bg-black shadow-lg'}`}>
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
@@ -79,7 +80,7 @@ export const Navbar = ({ currentPage, onNavigate }: NavbarProps) => {
               aria-expanded="false"
             >
               <span className="sr-only">Open main menu</span>
-              {isMenuOpen ? <CloseIcon className="block h-6 w-6" /> : <MenuIcon className="block h-6 w-6" /> }
+              {isMenuOpen ? <NavigationCloseIcon className="block h-6 w-6" /> : <NavigationMenuIcon className="block h-6 w-6" /> }
             </button>
           </div>
         </div>
