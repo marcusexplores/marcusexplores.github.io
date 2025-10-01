@@ -9,7 +9,7 @@ import { SelectContent } from "../../../components/select/SelectContent";
 import { SelectItem } from "../../../components/select/SelectItem";
 import { SelectTrigger } from "../../../components/select/SelectTrigger";
 import { SelectValue } from "../../../components/select/SelectValue";
-import { InputSearch } from "../../../features/input-search/InputSearch";
+import { InputSearch } from "../../../components/input/InputSearch";
 
 
 interface TravelogueFiltersProps {

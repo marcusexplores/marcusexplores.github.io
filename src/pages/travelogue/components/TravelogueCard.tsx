@@ -24,8 +24,9 @@ export const TravelogueCard = ({
   return (
     <TravelogueDialog title={title} region={region} dates={dates} days={days} description={description} image={image}>
       <div
+        data-slot="card"
         className={cn(
-          "flex flex-col gap-6 rounded-xl border",
+          "flex flex-col gap-6 rounded-xl border-border",
           "h-64 relative overflow-hidden hover:shadow-xl transition-all duration-300 group cursor-pointer hover:scale-[1.02]"
         )}
       >

@@ -63,7 +63,7 @@ export const TraveloguePage = () => {
       <div className="container mx-auto px-4 py-8 max-w-7xl">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="mb-2">Travel Stories</h1>
+          <h1 className="text-5xl font-bold mb-2">Travel Stories</h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Discover amazing travel experiences from around the world. Filter by destination, 
             duration, or search for specific adventures that inspire your next journey.
