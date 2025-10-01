@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Filter, X } from "lucide-react";
 import { TRAVELOGUE_FILTER_PROPERTY, TRAVELOGUE_FILTER_DURATION_OPTION, TRAVELOGUE_FILTER_REGION_OPTION } from "../constants"
 import type { TravelogueFilterState } from "../types";
-import { Badge } from "../../../features/badge/Badge";
+import { Badge } from "../../../components/badge/Badge";
 import { Button } from "../../../components/button/Button";
 import { Select } from "../../../features/select/Select";
 import { SelectContent } from "../../../features/select-content/SelectContent";

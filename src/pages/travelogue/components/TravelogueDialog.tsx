@@ -1,6 +1,3 @@
-import { CalendarDays, MapPin, ExternalLink } from "lucide-react";
-import { Button } from "../../../components/button/Button";
-import { Badge } from "../../../features/badge/Badge";
 import { Dialog } from "../../../components/dialog/Dialog";
 import { DialogTrigger } from "../../../components/dialog/DialogTrigger";
 import { DialogContent } from "../../../components/dialog/DialogContent";
@@ -8,6 +5,9 @@ import { DialogHeader } from "../../../components/dialog/DialogHeader";
 import { DialogTitle } from "../../../components/dialog/DialogTitle";
 import { DialogFooter } from "../../../components/dialog/DialogFooter";
 import { DialogClose } from "../../../components/dialog/DialogClose";
+import { Button } from "../../../components/button/Button";
+import { Badge } from "../../../components/badge/Badge";
+import { CalendarDays, MapPin, ExternalLink } from "lucide-react";
 
 interface TravelogueDialogProps {
   title: string;

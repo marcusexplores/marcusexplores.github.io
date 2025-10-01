@@ -3,7 +3,7 @@ import type { TravelogueFilterState } from "./types";
 import { travelTrips } from "./data/travel-trips";
 import { TravelogueFilters } from "./components/TravelogueFilters";
 import { TravelogueCard } from "./components/TravelogueCard";
-import { Separator } from "../../features/separator/Separator";
+import { Separator } from "../../components/separator/Separator";
 import { formatDate, getDaysBetween } from "./helpers/datetime";
 import { TRAVELOGUE_FILTER_DURATION_OPTION } from "./constants";
 
