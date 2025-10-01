@@ -1,27 +1,28 @@
 import { useState } from "react";
-import { Search, Filter, X } from "lucide-react";
-import type { TravelogueFilterState } from "../interfaces/TravelogueFilterState";
-import { Badge } from "../../../features/badge/Badge";
-import { Input } from "../../../features/input/Input";
-import { Button } from "../../../features/button/Button";
-import { Select } from "../../../features/select/Select";
-import { SelectContent } from "../../../features/select-content/SelectContent";
-import { SelectItem } from "../../../features/select-item/SelectItem";
-import { SelectTrigger } from "../../../features/select-trigger/SelectTrigger";
-import { SelectValue } from "../../../features/select-value/SelectValue";
+import { Filter, X } from "lucide-react";
+import { TRAVELOGUE_FILTER_PROPERTY, TRAVELOGUE_FILTER_DURATION_OPTION, TRAVELOGUE_FILTER_REGION_OPTION } from "../constants"
+import type { TravelogueFilterState } from "../types";
+import { Badge } from "../../../components/badge/Badge";
+import { Button } from "../../../components/button/Button";
+import { Select } from "../../../components/select/Select";
+import { SelectContent } from "../../../components/select/SelectContent";
+import { SelectItem } from "../../../components/select/SelectItem";
+import { SelectTrigger } from "../../../components/select/SelectTrigger";
+import { SelectValue } from "../../../components/select/SelectValue";
+import { InputSearch } from "../../../components/input/InputSearch";
 
 
 interface TravelogueFiltersProps {
   filters: TravelogueFilterState;
   onFiltersChange: (filters: TravelogueFilterState) => void;
-  countries: string[];
+  regions: string[];
   totalResults: number;
 }
 
 export function TravelogueFilters({ 
   filters, 
   onFiltersChange, 
-  countries, 
+  regions, 
   totalResults 
 }: TravelogueFiltersProps) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -35,13 +36,13 @@ export function TravelogueFilters({
 
   const clearFilters = () => {
     onFiltersChange({
-      titleSearch: "",
-      country: "",
-      dayRange: ""
+      keyword: "",
+      region: "",
+      duration: ""
     });
   };
 
-  const hasActiveFilters = filters.titleSearch || filters.country || filters.dayRange;
+  const hasActiveFilters = filters.keyword || filters.region || filters.duration;
 
   return (
     <div className="space-y-4">
@@ -63,30 +64,26 @@ export function TravelogueFilters({
 
       <div className={`space-y-4 ${isExpanded ? 'block' : 'hidden md:block'}`}>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          {/* Title Search */}
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              placeholder="Search by title..."
-              value={filters.titleSearch}
-              onChange={(e) => handleFilterChange('titleSearch', e.target.value)}
-              className="pl-10"
-            />
-          </div>
+          {/* Keyword Search */}
+          <InputSearch
+            placeholder="Search by keyword..."
+            value={filters.keyword}
+            onChange={(e) => handleFilterChange(TRAVELOGUE_FILTER_PROPERTY.KEYWORD, e.target.value)}
+          />
 
-          {/* Country Filter */}
+          {/* region Filter */}
           <Select
-            value={filters.country}
-            onValueChange={(value) => handleFilterChange('country', value === 'all' ? '' : value)}
+            value={filters.region}
+            onValueChange={(value) => handleFilterChange(TRAVELOGUE_FILTER_PROPERTY.REGION, value === TRAVELOGUE_FILTER_REGION_OPTION.ALL ? '' : value)}
           >
             <SelectTrigger>
-              <SelectValue placeholder="All countries" />
+              <SelectValue placeholder="All regions" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">All countries</SelectItem>
-              {countries.map((country) => (
-                <SelectItem key={country} value={country}>
-                  {country}
+              <SelectItem value={TRAVELOGUE_FILTER_REGION_OPTION.ALL}>All regions</SelectItem>
+              {regions.map((region) => (
+                <SelectItem key={region} value={region}>
+                  {region}
                 </SelectItem>
               ))}
             </SelectContent>
@@ -94,18 +91,17 @@ export function TravelogueFilters({
 
           {/* Day Range Filter */}
           <Select
-            value={filters.dayRange}
-            onValueChange={(value) => handleFilterChange('dayRange', value === 'all' ? '' : value)}
+            value={filters.duration}
+            onValueChange={(value) => handleFilterChange(TRAVELOGUE_FILTER_PROPERTY.DURATION, value === TRAVELOGUE_FILTER_DURATION_OPTION.ALL ? '' : value)}
           >
             <SelectTrigger>
               <SelectValue placeholder="Any duration" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">Any duration</SelectItem>
-              <SelectItem value="1-3">1-3 days</SelectItem>
-              <SelectItem value="4-7">4-7 days</SelectItem>
-              <SelectItem value="8-14">1-2 weeks</SelectItem>
-              <SelectItem value="15+">2+ weeks</SelectItem>
+              <SelectItem value={TRAVELOGUE_FILTER_DURATION_OPTION.ALL}>Any duration</SelectItem>
+              <SelectItem value={TRAVELOGUE_FILTER_DURATION_OPTION.LESS_THAN_ONE_WEEK}>&le; 1 week</SelectItem>
+              <SelectItem value={TRAVELOGUE_FILTER_DURATION_OPTION.MORE_THAN_ONE_WEEK}>&gt; 1 week</SelectItem>
+              <SelectItem value={TRAVELOGUE_FILTER_DURATION_OPTION.MORE_THAN_TWO_WEEKS}>&gt; 2 weeks</SelectItem>
             </SelectContent>
           </Select>
 
@@ -125,35 +121,34 @@ export function TravelogueFilters({
         {/* Active Filters Display */}
         {hasActiveFilters && (
           <div className="flex flex-wrap gap-2">
-            {filters.titleSearch && (
+            {filters.keyword && (
               <Badge variant="secondary" className="gap-1">
-                Title: "{filters.titleSearch}"
+                Title: "{filters.keyword}"
                 <button
-                  onClick={() => handleFilterChange('titleSearch', '')}
+                  onClick={() => handleFilterChange(TRAVELOGUE_FILTER_PROPERTY.KEYWORD, '')}
                   className="ml-1 hover:bg-muted-foreground/20 rounded-full p-0.5"
                 >
                   <X className="h-3 w-3" />
                 </button>
               </Badge>
             )}
-            {filters.country && (
+            {filters.region && (
               <Badge variant="secondary" className="gap-1">
-                Country: {filters.country}
+                Region: {filters.region}
                 <button
-                  onClick={() => handleFilterChange('country', '')}
+                  onClick={() => handleFilterChange(TRAVELOGUE_FILTER_PROPERTY.REGION, '')}
                   className="ml-1 hover:bg-muted-foreground/20 rounded-full p-0.5"
                 >
                   <X className="h-3 w-3" />
                 </button>
               </Badge>
             )}
-            {filters.dayRange && (
+            {filters.duration && (
               <Badge variant="secondary" className="gap-1">
-                Duration: {filters.dayRange === '15+' ? '2+ weeks' : 
-                          filters.dayRange === '8-14' ? '1-2 weeks' :
-                          filters.dayRange === '4-7' ? '4-7 days' : '1-3 days'}
+                Duration: {filters.duration === TRAVELOGUE_FILTER_DURATION_OPTION.MORE_THAN_TWO_WEEKS ? '2+ weeks' : 
+                          filters.duration === TRAVELOGUE_FILTER_DURATION_OPTION.MORE_THAN_ONE_WEEK ? '1+ weeks' : '1 week'}
                 <button
-                  onClick={() => handleFilterChange('dayRange', '')}
+                  onClick={() => handleFilterChange(TRAVELOGUE_FILTER_PROPERTY.DURATION, '')}
                   className="ml-1 hover:bg-muted-foreground/20 rounded-full p-0.5"
                 >
                   <X className="h-3 w-3" />

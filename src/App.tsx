@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { navBasePath, navPageNames } from "./features/navigation-bar/constants";
-import { Navbar } from "./features/navigation-bar/Navbar";
+import { navBasePath, navPageNames } from "./components/navigation/constants";
+import { isHomePage } from './components/navigation/helpers';
+import { NavigationBar } from "./components/navigation/NavigationBar";
 import { HomePage } from "./pages/home/HomePage";
 import { TraveloguePage } from "./pages/travelogue/TraveloguePage";
 import { NotFoundPage } from "./pages/not-found/NotFoundPage";
@@ -57,8 +58,10 @@ export default function App() {
 
   return (
     <>
-      <Navbar currentPage={currentPage} onNavigate={setCurrentPage} />
-      {renderPage()}
+      <NavigationBar currentPage={currentPage} onNavigate={setCurrentPage} />
+      <main className={isHomePage(currentPage) ? "" : "pt-20"}>
+        {renderPage()}
+      </main>
     </>
   );
 }

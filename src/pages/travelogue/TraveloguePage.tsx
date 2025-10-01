@@ -1,68 +1,52 @@
 import { useState, useMemo } from "react";
-import { TravelogueFilters } from "./components/TravelogueFilters";
-import { TravelTripCard } from "./components/TravelTripCard";
-import type { TravelTrip } from "./interfaces/TravelTrip";
-import type { TravelogueFilterState } from "./interfaces/TravelogueFilterState";
-import { Separator } from "../../features/separator/Separator";
+import type { TravelogueFilterState } from "./types";
 import { travelTrips } from "./data/travel-trips";
-import { TravelogueDialog } from "./components/TravelogueDialog";
+import { TravelogueFilters } from "./components/TravelogueFilters";
+import { TravelogueCard } from "./components/TravelogueCard";
+import { Separator } from "../../components/separator/Separator";
+import { formatDate, getDaysBetween } from "./helpers/datetime";
+import { TRAVELOGUE_FILTER_DURATION_OPTION } from "./constants";
 
 export const TraveloguePage = () => {
-  const [filters, setFilters] = useState<TravelogueFilterState>({
-    titleSearch: "",
-    country: "",
-    dayRange: ""
+  const [filterState, setFilterState] = useState<TravelogueFilterState>({
+    keyword: "",
+    region: "",
+    duration: ""
   });
 
-  const [selectedEntry, setSelectedEntry] = useState<TravelTrip | null>(null);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-
-  const handleCardClick = (entry: TravelTrip) => {
-    setSelectedEntry(entry);
-    setIsDialogOpen(true);
-  };
-
-  const handleDialogClose = () => {
-    setIsDialogOpen(false);
-    setSelectedEntry(null);
-  };
-
-  // Get unique countries for the filter dropdown
-  const countries = useMemo(() => {
-    const uniqueCountries = Array.from(new Set(travelTrips.map(trip => trip.country)));
-    return uniqueCountries.sort();
+  // Get unique regions for the filter dropdown
+  const regions = useMemo(() => {
+    const uniqueregions = Array.from(new Set(travelTrips.map(trip => trip.region)));
+    return uniqueregions.sort();
   }, []);
 
   // Filter the travelogues based on current filters
   const filteredTravelogues = useMemo(() => {
     return travelTrips.filter(trip => {
-      // Title search filter
-      if (filters.titleSearch && !trip.title.toLowerCase().includes(filters.titleSearch.toLowerCase())) {
+      // Keyword search filter
+      if (filterState.keyword && !trip.title.toLowerCase().includes(filterState.keyword.toLowerCase())) {
         return false;
       }
 
-      // Country filter
-      if (filters.country && trip.country !== filters.country) {
+      // region filter
+      if (filterState.region && trip.region !== filterState.region) {
         return false;
       }
 
       // Day range filter
-      if (filters.dayRange) {
+      if (filterState.duration) {
         const startDate = new Date(trip.startDate);
         const endDate = new Date(trip.endDate);
-        const daysDifference = Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24)) + 1;
+        const daysDifference = getDaysBetween(startDate, endDate);
 
-        switch (filters.dayRange) {
-          case "1-3":
-            if (daysDifference < 1 || daysDifference > 3) return false;
+        switch (filterState.duration) {
+          case TRAVELOGUE_FILTER_DURATION_OPTION.LESS_THAN_ONE_WEEK:
+            if (daysDifference < 1 || daysDifference > 7) return false;
             break;
-          case "4-7":
-            if (daysDifference < 4 || daysDifference > 7) return false;
-            break;
-          case "8-14":
+          case TRAVELOGUE_FILTER_DURATION_OPTION.MORE_THAN_ONE_WEEK:
             if (daysDifference < 8 || daysDifference > 14) return false;
             break;
-          case "15+":
+          case TRAVELOGUE_FILTER_DURATION_OPTION.MORE_THAN_TWO_WEEKS:
             if (daysDifference < 15) return false;
             break;
           default:
@@ -72,14 +56,14 @@ export const TraveloguePage = () => {
 
       return true;
     });
-  }, [filters]);
+  }, [filterState]);
 
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8 max-w-7xl">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="mb-2">Travel Stories</h1>
+          <h1 className="text-5xl font-bold mb-2">Travel Stories</h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Discover amazing travel experiences from around the world. Filter by destination, 
             duration, or search for specific adventures that inspire your next journey.
@@ -91,9 +75,9 @@ export const TraveloguePage = () => {
         {/* Filters */}
         <div className="mb-8">
           <TravelogueFilters
-            filters={filters}
-            onFiltersChange={setFilters}
-            countries={countries}
+            filters={filterState}
+            onFiltersChange={setFilterState}
+            regions={regions}
             totalResults={filteredTravelogues.length}
           />
         </div>
@@ -106,22 +90,26 @@ export const TraveloguePage = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredTravelogues.map((entry) => (
-              <TravelTripCard 
-                key={entry.id} 
-                entry={entry} 
-                onClick={() => handleCardClick(entry)}
-              />
-            ))}
+            {filteredTravelogues.map((entry, index) => {
+              const startDate = new Date(entry.startDate);
+              const endDate = new Date(entry.endDate);
+              const dateRange = `${formatDate(startDate)} - ${formatDate(endDate)}`;
+              const days = getDaysBetween(startDate, endDate);
+              return (
+                <TravelogueCard 
+                  key={index} 
+                  title={entry.title}
+                  region={entry.region}
+                  dates={dateRange}
+                  days={days}
+                  description={entry.description}
+                  image={entry.imageUrl}
+                  website={entry.website}
+                />
+              );
+            })}
           </div>
         )}
-
-        {/* Dialog for showing travelogue details */}
-        <TravelogueDialog
-          entry={selectedEntry}
-          isOpen={isDialogOpen}
-          onClose={handleDialogClose}
-        />
       </div>
     </div>
   );

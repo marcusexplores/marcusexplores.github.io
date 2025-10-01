@@ -1,59 +1,59 @@
+import { Dialog } from "../../../components/dialog/Dialog";
+import { DialogTrigger } from "../../../components/dialog/DialogTrigger";
+import { DialogContent } from "../../../components/dialog/DialogContent";
+import { DialogHeader } from "../../../components/dialog/DialogHeader";
+import { DialogTitle } from "../../../components/dialog/DialogTitle";
+import { DialogFooter } from "../../../components/dialog/DialogFooter";
+import { DialogClose } from "../../../components/dialog/DialogClose";
+import { Button } from "../../../components/button/Button";
+import { Badge } from "../../../components/badge/Badge";
 import { CalendarDays, MapPin, ExternalLink } from "lucide-react";
-import type { TravelTrip } from "../interfaces/TravelTrip";
-import { Button } from "../../../features/button/Button";
-import { Badge } from "../../../features/badge/Badge";
-import { Dialog } from "../../../features/dialog/Dialog";
-import { DialogContent } from "../../../features/dialog-content/DialogContent";
-import { DialogTitle } from "../../../features/dialog-title/DialogTitle";
-import { DialogHeader } from "../../../features/dialog-header/DialogHeader";
 
 interface TravelogueDialogProps {
-  entry: TravelTrip | null;
-  isOpen: boolean;
-  onClose: () => void;
+  children: React.ReactNode
+  title: string;
+  region: string;
+  dates: string;
+  days: number;
+  description: string;
+  image?: string;
+  website?: string;
 }
 
-export const TravelogueDialog = ({ entry, isOpen, onClose }: TravelogueDialogProps) => {
-  if (!entry) return null;
-
-  const startDate = new Date(entry.startDate);
-  const endDate = new Date(entry.endDate);
-  const daysDifference = Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24)) + 1;
-  
-  const formatDate = (date: Date) => {
-    return date.toLocaleDateString('en-US', { 
-      month: 'short', 
-      day: 'numeric',
-      year: 'numeric'
-    });
-  };
-
+export const TravelogueDialog = ({
+  children,
+  title,
+  region,
+  dates,
+  days,
+  description,
+  image,
+  website
+}: TravelogueDialogProps) => {
   const handleVisitSite = () => {
     // In a real app, this would navigate to the actual travelogue page
-    console.log(`Visiting site for: ${entry.title}`);
-    // For demo purposes, we'll just close the dialog
-    onClose();
+    console.log(`Visiting site for: ${title} and the site is: ${website}`);
+    window.open(website, '_blank')
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl">
+    <Dialog>
+      <DialogTrigger asChild>{children}</DialogTrigger>
+      <DialogContent>
         <DialogHeader>
-          <div className="flex items-start justify-between gap-4">
-            <DialogTitle className="text-left">{entry.title}</DialogTitle>
-            <Badge variant="secondary" className="shrink-0">
-              {daysDifference} {daysDifference === 1 ? 'day' : 'days'}
-            </Badge>
-          </div>
+          <DialogTitle>{title}</DialogTitle>
+          <Badge variant="secondary" className="items-end shrink-0">
+            {days} {days === 1 ? "day" : "days"}
+          </Badge>
         </DialogHeader>
-        
+
         <div className="space-y-6">
           {/* Image */}
-          {entry.imageUrl && (
+          {image && (
             <div className="aspect-video w-full rounded-lg overflow-hidden">
-              <img 
-                src={entry.imageUrl} 
-                alt={entry.title}
+              <img
+                src={image}
+                alt={title}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -63,38 +63,36 @@ export const TravelogueDialog = ({ entry, isOpen, onClose }: TravelogueDialogPro
           <div className="flex flex-wrap gap-4">
             <div className="flex items-center gap-2 text-muted-foreground">
               <MapPin className="h-4 w-4" />
-              <span>{entry.country}</span>
+              <span>{region}</span>
             </div>
             <div className="flex items-center gap-2 text-muted-foreground">
               <CalendarDays className="h-4 w-4" />
-              <span>
-                {formatDate(startDate)} - {formatDate(endDate)}
-              </span>
+              <span>{dates}</span>
             </div>
           </div>
 
           {/* Description */}
-          {entry.description && (
-            <div className="space-y-2">
-              <h4>About this trip</h4>
-              <p className="text-muted-foreground leading-relaxed">
-                {entry.description}
-              </p>
-            </div>
-          )}
-
-          {/* Action Buttons */}
-          <div className="flex gap-3 pt-4">
-            <Button onClick={handleVisitSite} className="flex-1">
-              <ExternalLink className="h-4 w-4 mr-2" />
-              Visit Full Story
-            </Button>
-            <Button variant="outline" onClick={onClose}>
-              Close
-            </Button>
+          <div className="space-y-2">
+            <h4>About this trip</h4>
+            <p className="text-muted-foreground leading-relaxed">
+              {description}
+            </p>
           </div>
         </div>
+
+        {/* Action Buttons */}
+        <DialogFooter>
+          <Button onClick={handleVisitSite} className="flex-1">
+            <ExternalLink className="h-4 w-4 mr-2" />
+            Visit Full Story
+          </Button>
+          <DialogClose asChild>
+            <Button type="button" variant="secondary">
+              Close
+            </Button>
+          </DialogClose>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   );
-}
+};

@@ -67,3 +67,8 @@ export default tseslint.config([
   },
 ])
 ```
+Tailwind css notes
+You can determine if a colon (:) is part of a class name or a state (a variant) by looking at its position and context.
+.hover\:bg-accent:hover
+hover:bg-accent is the classname as the colon is escaped
+The second hover is the "state" because the colon is not escaped
