@@ -3,7 +3,7 @@ import { Filter, X } from "lucide-react";
 import { TRAVELOGUE_FILTER_PROPERTY, TRAVELOGUE_FILTER_DURATION_OPTION, TRAVELOGUE_FILTER_REGION_OPTION } from "../constants"
 import type { TravelogueFilterState } from "../types";
 import { Badge } from "../../../features/badge/Badge";
-import { Button } from "../../../features/button/Button";
+import { Button } from "../../../components/button/Button";
 import { Select } from "../../../features/select/Select";
 import { SelectContent } from "../../../features/select-content/SelectContent";
 import { SelectItem } from "../../../features/select-item/SelectItem";

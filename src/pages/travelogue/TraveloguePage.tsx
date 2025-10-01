@@ -1,11 +1,9 @@
 import { useState, useMemo } from "react";
-import type { TravelTrip } from "./data/travel-trips";
 import type { TravelogueFilterState } from "./types";
 import { travelTrips } from "./data/travel-trips";
 import { TravelogueFilters } from "./components/TravelogueFilters";
 import { TravelogueCard } from "./components/TravelogueCard";
 import { Separator } from "../../features/separator/Separator";
-import { TravelogueDialog } from "./components/TravelogueDialog";
 import { formatDate, getDaysBetween } from "./helpers/datetime";
 import { TRAVELOGUE_FILTER_DURATION_OPTION } from "./constants";
 
@@ -15,19 +13,6 @@ export const TraveloguePage = () => {
     region: "",
     duration: ""
   });
-
-  const [selectedEntry, setSelectedEntry] = useState<TravelTrip | null>(null);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-
-  const handleCardClick = (entry: TravelTrip) => {
-    setSelectedEntry(entry);
-    setIsDialogOpen(true);
-  };
-
-  const handleDialogClose = () => {
-    setIsDialogOpen(false);
-    setSelectedEntry(null);
-  };
 
   // Get unique regions for the filter dropdown
   const regions = useMemo(() => {
@@ -117,33 +102,13 @@ export const TraveloguePage = () => {
                   region={entry.region}
                   dates={dateRange}
                   days={days}
+                  description={entry.description}
                   image={entry.imageUrl}
-                  onClick={() => handleCardClick(entry)}
                 />
               );
             })}
           </div>
         )}
-
-        {/* Dialog for showing travelogue details */}
-        {selectedEntry && (() => {
-          const startDate = new Date(selectedEntry.startDate);
-          const endDate = new Date(selectedEntry.endDate);
-          const dateRange = `${formatDate(startDate)} - ${formatDate(endDate)}`;
-          const days = getDaysBetween(startDate, endDate);
-          return (
-            <TravelogueDialog
-              title={selectedEntry.title}
-              region={selectedEntry.region}
-              dates={dateRange}
-              days={days}
-              description={selectedEntry.description}
-              image={selectedEntry.imageUrl}
-              isOpen={isDialogOpen}
-              onClose={handleDialogClose}
-            />
-          );
-        })()}
       </div>
     </div>
   );
