@@ -10,28 +10,30 @@ import { Badge } from "../../../components/badge/Badge";
 import { CalendarDays, MapPin, ExternalLink } from "lucide-react";
 
 interface TravelogueDialogProps {
+  children: React.ReactNode
   title: string;
   region: string;
   dates: string;
   days: number;
   description: string;
   image?: string;
-  children: React.ReactNode
+  website?: string;
 }
 
 export const TravelogueDialog = ({
+  children,
   title,
   region,
   dates,
   days,
   description,
   image,
-  children
+  website
 }: TravelogueDialogProps) => {
   const handleVisitSite = () => {
     // In a real app, this would navigate to the actual travelogue page
-    console.log(`Visiting site for: ${title}`);
-    // For demo purposes, we'll just close the dialog
+    console.log(`Visiting site for: ${title} and the site is: ${website}`);
+    window.open(website, '_blank')
   };
 
   return (

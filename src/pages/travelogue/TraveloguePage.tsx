@@ -90,20 +90,21 @@ export const TraveloguePage = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredTravelogues.map((entry) => {
+            {filteredTravelogues.map((entry, index) => {
               const startDate = new Date(entry.startDate);
               const endDate = new Date(entry.endDate);
               const dateRange = `${formatDate(startDate)} - ${formatDate(endDate)}`;
               const days = getDaysBetween(startDate, endDate);
               return (
                 <TravelogueCard 
-                  key={entry.id} 
+                  key={index} 
                   title={entry.title}
                   region={entry.region}
                   dates={dateRange}
                   days={days}
                   description={entry.description}
                   image={entry.imageUrl}
+                  website={entry.website}
                 />
               );
             })}

@@ -11,18 +11,35 @@ interface TravelogueCardProps {
   days: number;
   description: string;
   image?: string;
+  website?: string;
 }
+
+const imageModules = import.meta.glob('../../../assets/travelogue/**/*.jpg', {
+  eager: true,
+  import: 'default',
+});
+
+const getLocalImagePath = (path: string) => {
+  const INPUT_PATH_PREFIX_TO_REMOVE = 'src/';
+  const NESTING_PREFIX = '../../../';
+  const pathWithoutSrc = path.substring(INPUT_PATH_PREFIX_TO_REMOVE.length);
+  const key = `${NESTING_PREFIX}${pathWithoutSrc}`;
+  return imageModules[key] as string | undefined;
+};
 
 export const TravelogueCard = ({
   title,
   region,
   dates,
   days,
-  image,
   description,
+  image,
+  website
 }: TravelogueCardProps) => {
+  const isExternalUrl = image?.startsWith('https://');
+  const finalImageSrc = isExternalUrl ? image : getLocalImagePath(image ?? "");
   return (
-    <TravelogueDialog title={title} region={region} dates={dates} days={days} description={description} image={image}>
+    <TravelogueDialog title={title} region={region} dates={dates} days={days} description={description} image={image} website={website}>
       <div
         data-slot="card"
         className={cn(
@@ -34,7 +51,7 @@ export const TravelogueCard = ({
         {image && (
           <div
             className="absolute inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
-            style={{ backgroundImage: `url(${image})` }}
+            style={{ backgroundImage: `url(${finalImageSrc})` }}
           />
         )}
 
