@@ -1,9 +1,6 @@
-import type { ReactNode } from 'react';
-
-interface SectionCoverProps {
+type SectionCoverProps = React.ComponentProps<"section"> & {
   backgroundImage: string;
-  children?: ReactNode;
-}
+};
 
 export const SectionCover = ({ backgroundImage, children }: SectionCoverProps) => {
   return (
