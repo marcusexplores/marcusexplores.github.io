@@ -64,7 +64,7 @@ export default function App() {
       <main className={isHomePage(currentPage) ? "" : "pt-20"}>
         {/* {renderPage()} */}
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route index element={<HomePage />} />
           <Route path="/travelogue" element={<TraveloguePage />} />
         </Routes>
       </main>
