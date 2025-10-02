@@ -59,17 +59,17 @@ export const NavigationBar = ({ currentPage, onNavigate }: NavbarProps) => {
           {/* Desktop Navigation Links */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
-              {navLinks.map((link) => (
-                // <a
-                //   key={link}
-                //   href={`${navBasePath}/${link}`}
-                //   onClick={(e) => { e.preventDefault(); handleNavClick(link); }}
-                //   className={`${currentPage === link ? 'text-white' : 'text-gray-300'} hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors`}
-                // >
-                //   {link}
-                // </a>
-                <Link to={`/${link}`}>{link}</Link>
-              ))}
+              {/* {navLinks.map((link) => (
+                <a
+                  key={link}
+                  href={`${navBasePath}/${link}`}
+                  onClick={(e) => { e.preventDefault(); handleNavClick(link); }}
+                  className={`${currentPage === link ? 'text-white' : 'text-gray-300'} hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors`}
+                >
+                  {link}
+                </a>
+              ))} */}
+              <Link to={`/travelogue`}>Travelogue</Link>
             </div>
           </div>
 
