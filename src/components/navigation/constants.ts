@@ -1,9 +1,5 @@
-export const navBasePath = "";
-
-export const navPageNames = {
-  Travelogue: "Travelogue",
-};
-
-export const navLinks = [
-  navPageNames.Travelogue,
-];
+export const NAVIGATION_KEY = {
+  NOT_FOUND: "*",
+  HOME: "/",
+  TRAVELOGUE: "/travelogue"
+} 

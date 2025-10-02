@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirect</title>
+</head>
+
+<body>
+  <script>
+    const currentPath = window.location.pathname;
+
+    // Regex to check for a path that is not just the root "/" and does not already contain a '#'
+    const pathRegex = /^(\/[^#\s\/].*)$/;
+
+    if (pathRegex.test(currentPath)) {
+      // Path matches the pattern
+      // Extract the relevant part of the path
+      const newPath = currentPath.replace(pathRegex, '/#$1');
+
+      // Construct the new URL and redirect
+      window.location.href = window.location.origin + newPath;
+    }
+  </script>
+</body>
+
+</html>
