@@ -5,6 +5,7 @@ import { NavigationBar } from "./components/navigation/NavigationBar";
 import { HomePage } from "./pages/home/HomePage";
 import { TraveloguePage } from "./pages/travelogue/TraveloguePage";
 import { NotFoundPage } from "./pages/not-found/NotFoundPage";
+import { Routes, Route } from "react-router";
 
 const getPageFromPath = () => {
     const path = window.location.pathname;
@@ -45,22 +46,26 @@ export default function App() {
     window.scrollTo(0, 0);
   }, [currentPage]);
 
-  const renderPage = () => {
-    switch (currentPage) {
-      case navPageNames.Travelogue:
-        return <TraveloguePage />;
-      case "":
-        return <HomePage />;
-      default:
-        return <NotFoundPage />;
-    }
-  };
+  // const renderPage = () => {
+  //   switch (currentPage) {
+  //     case navPageNames.Travelogue:
+  //       return <TraveloguePage />;
+  //     case "":
+  //       return <HomePage />;
+  //     default:
+  //       return <NotFoundPage />;
+  //   }
+  // };
 
   return (
     <>
       <NavigationBar currentPage={currentPage} onNavigate={setCurrentPage} />
       <main className={isHomePage(currentPage) ? "" : "pt-20"}>
-        {renderPage()}
+        {/* {renderPage()} */}
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/travelogue" element={<TraveloguePage />} />
+        </Routes>
       </main>
     </>
   );

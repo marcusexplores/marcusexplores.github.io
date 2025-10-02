@@ -1,7 +1,7 @@
 export const navBasePath = "";
 
 export const navPageNames = {
-  Travelogue: "Travelogue",
+  Travelogue: "travelogue",
 };
 
 export const navLinks = [
