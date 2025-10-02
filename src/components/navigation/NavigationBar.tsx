@@ -50,9 +50,10 @@ export const NavigationBar = ({ currentPage, onNavigate }: NavbarProps) => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <a href={`${navBasePath}/`} onClick={(e) => { e.preventDefault(); handleNavClick(''); }} className="text-white text-2xl font-bold tracking-wider">
+            {/* <a href={`${navBasePath}/`} onClick={(e) => { e.preventDefault(); handleNavClick(''); }} className="text-white text-2xl font-bold tracking-wider">
               LOGO
-            </a>
+            </a> */}
+            <Link to={"/"} className="text-white text-2xl font-bold tracking-wider">LOGO</Link>
           </div>
 
           {/* Desktop Navigation Links */}
@@ -67,7 +68,7 @@ export const NavigationBar = ({ currentPage, onNavigate }: NavbarProps) => {
                 // >
                 //   {link}
                 // </a>
-                <Link to={`${navBasePath}/${link}`}>{link}</Link>
+                <Link to={`/${link}`}>{link}</Link>
               ))}
             </div>
           </div>
