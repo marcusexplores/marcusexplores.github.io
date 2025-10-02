@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirect</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+
+    h1 {
+      font-size: 50px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>404</h1>
+  <p>The page you requested was not found. Redirecting to the correct location...</p>
+
+  <script>
+    const currentPath = window.location.pathname;
+
+    // Regex to check for a path that is not just the root "/"
+    // and does not already contain a '#'
+    const pathRegex = /^(\/[^#\s\/].*)$/;
+
+    if (pathRegex.test(currentPath)) {
+      // Path matches the pattern
+      // Extract the relevant part of the path
+      const newPath = currentPath.replace(pathRegex, '/#$1');
+
+      // Construct the new URL and redirect
+      window.location.href = window.location.origin + newPath;
+    } else {
+      // Path is not a candidate for redirection (e.g., already has a #, or is root)
+      // Fallback to a different page or show the 404 message
+      // You can add a default redirect here if needed
+      setTimeout(() => {
+        window.location.href = '/'; // Redirect to home page after a delay
+      }, 5000); // 5-second delay
+    }
+  </script>
+</body>
+
+</html>
