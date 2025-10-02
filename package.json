@@ -1,6 +1,6 @@
 {
   "name": "marcus-explores",
-  "private": false,
+  "private": true,
   "version": "0.0.0",
   "type": "module",
   "homepage": "https://marcusexplores.github.io",

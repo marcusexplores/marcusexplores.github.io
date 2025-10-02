@@ -7,6 +7,7 @@ import { HomePage } from "./pages/home/HomePage";
 import { TraveloguePage } from "./pages/travelogue/TraveloguePage";
 // import { NotFoundPage } from "./pages/not-found/NotFoundPage";
 import { Routes, Route } from "react-router";
+import NotFoundPage from "./pages/not-found/NotFoundPage";
 
 const getPageFromPath = () => {
     const path = window.location.pathname;
@@ -66,6 +67,7 @@ export default function App() {
         <Routes>
           <Route index element={<HomePage />} />
           <Route path="/travelogue" element={<TraveloguePage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
     </>
