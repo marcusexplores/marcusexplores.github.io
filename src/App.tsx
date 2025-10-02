@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { navBasePath, navPageNames } from "./components/navigation/constants";
+// import { navBasePath, navPageNames } from "./components/navigation/constants";
+import { navBasePath } from "./components/navigation/constants";
 import { isHomePage } from './components/navigation/helpers';
 import { NavigationBar } from "./components/navigation/NavigationBar";
 import { HomePage } from "./pages/home/HomePage";
 import { TraveloguePage } from "./pages/travelogue/TraveloguePage";
-import { NotFoundPage } from "./pages/not-found/NotFoundPage";
+// import { NotFoundPage } from "./pages/not-found/NotFoundPage";
 import { Routes, Route } from "react-router";
 
 const getPageFromPath = () => {
