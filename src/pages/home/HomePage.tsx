@@ -16,7 +16,7 @@ export const HomePage = () => {
       setIsLoading(false);
     }, LOAD_DURATION_MS);
 
-    return () => clearTimeout(timer);
+    return () => { clearTimeout(timer) };
   }, []);
   return (
     <>

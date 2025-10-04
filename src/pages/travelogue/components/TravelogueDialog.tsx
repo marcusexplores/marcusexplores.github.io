@@ -32,8 +32,6 @@ export const TravelogueDialog = ({
   website
 }: TravelogueDialogProps) => {
   const handleVisitSite = () => {
-    // In a real app, this would navigate to the actual travelogue page
-    console.log(`Visiting site for: ${title} and the site is: ${website}`);
     window.open(website, '_blank')
   };
 

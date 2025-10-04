@@ -54,7 +54,7 @@ export function TravelogueFilters({
         <Button
           variant="outline"
           size="sm"
-          onClick={() => setIsExpanded(!isExpanded)}
+          onClick={() => { setIsExpanded(!isExpanded) }}
           className="md:hidden"
         >
           <Filter className="h-4 w-4 mr-2" />
@@ -68,13 +68,13 @@ export function TravelogueFilters({
           <InputSearch
             placeholder="Search by keyword..."
             value={filters.keyword}
-            onChange={(e) => handleFilterChange(TRAVELOGUE_FILTER_PROPERTY.KEYWORD, e.target.value)}
+            onChange={(e) => { handleFilterChange(TRAVELOGUE_FILTER_PROPERTY.KEYWORD, e.target.value) }}
           />
 
           {/* region Filter */}
           <Select
             value={filters.region}
-            onValueChange={(value) => handleFilterChange(TRAVELOGUE_FILTER_PROPERTY.REGION, value === TRAVELOGUE_FILTER_REGION_OPTION.ALL ? '' : value)}
+            onValueChange={(value) => { handleFilterChange(TRAVELOGUE_FILTER_PROPERTY.REGION, value === TRAVELOGUE_FILTER_REGION_OPTION.ALL ? '' : value) }}
           >
             <SelectTrigger>
               <SelectValue placeholder="All regions" />
@@ -92,7 +92,7 @@ export function TravelogueFilters({
           {/* Day Range Filter */}
           <Select
             value={filters.duration}
-            onValueChange={(value) => handleFilterChange(TRAVELOGUE_FILTER_PROPERTY.DURATION, value === TRAVELOGUE_FILTER_DURATION_OPTION.ALL ? '' : value)}
+            onValueChange={(value) => { handleFilterChange(TRAVELOGUE_FILTER_PROPERTY.DURATION, value === TRAVELOGUE_FILTER_DURATION_OPTION.ALL ? '' : value) }}
           >
             <SelectTrigger>
               <SelectValue placeholder="Any duration" />
@@ -125,7 +125,7 @@ export function TravelogueFilters({
               <Badge variant="secondary" className="gap-1">
                 Title: "{filters.keyword}"
                 <button
-                  onClick={() => handleFilterChange(TRAVELOGUE_FILTER_PROPERTY.KEYWORD, '')}
+                  onClick={() => { handleFilterChange(TRAVELOGUE_FILTER_PROPERTY.KEYWORD, '') }}
                   className="ml-1 hover:bg-muted-foreground/20 rounded-full p-0.5"
                 >
                   <X className="h-3 w-3" />
@@ -136,7 +136,7 @@ export function TravelogueFilters({
               <Badge variant="secondary" className="gap-1">
                 Region: {filters.region}
                 <button
-                  onClick={() => handleFilterChange(TRAVELOGUE_FILTER_PROPERTY.REGION, '')}
+                  onClick={() => { handleFilterChange(TRAVELOGUE_FILTER_PROPERTY.REGION, '') }}
                   className="ml-1 hover:bg-muted-foreground/20 rounded-full p-0.5"
                 >
                   <X className="h-3 w-3" />
@@ -148,7 +148,7 @@ export function TravelogueFilters({
                 Duration: {filters.duration === TRAVELOGUE_FILTER_DURATION_OPTION.MORE_THAN_TWO_WEEKS ? '2+ weeks' : 
                           filters.duration === TRAVELOGUE_FILTER_DURATION_OPTION.MORE_THAN_ONE_WEEK ? '1+ weeks' : '1 week'}
                 <button
-                  onClick={() => handleFilterChange(TRAVELOGUE_FILTER_PROPERTY.DURATION, '')}
+                  onClick={() => { handleFilterChange(TRAVELOGUE_FILTER_PROPERTY.DURATION, '') }}
                   className="ml-1 hover:bg-muted-foreground/20 rounded-full p-0.5"
                 >
                   <X className="h-3 w-3" />
