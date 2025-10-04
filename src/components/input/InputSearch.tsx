@@ -1,5 +1,5 @@
-import { Input } from "./Input";
 import { Search } from "lucide-react";
+import { Input } from "./Input";
 
 type InputSearchProps = React.ComponentProps<typeof Input>;
 

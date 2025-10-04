@@ -1,6 +1,6 @@
-import heroBackgroundImg from '../../assets/home_hero_banner.jpg'
-import { SectionContent } from '../../components/section/SectionContent';
-import { SectionCover } from '../../components/section/SectionCover';
+import { SectionContent } from '@/components/section/SectionContent';
+import { SectionCover } from '@/components/section/SectionCover';
+import heroBackgroundImg from '@/assets/home_hero_banner.jpg'
 
 export const HomePage = () => (
   <main>

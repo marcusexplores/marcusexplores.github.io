@@ -1,5 +1,5 @@
-import { cn } from "../../functions/cn";
 import * as SelectPrimitive from "@radix-ui/react-select";
+import { cn } from "@/functions/cn";
 import { SelectScrollUpButton } from "./SelectScrollUpButton";
 import { SelectScrollDownButton } from "./SelectScrollDownButton";
 

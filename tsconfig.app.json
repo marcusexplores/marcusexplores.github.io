@@ -6,6 +6,10 @@
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
+    "baseUrl": ".", // This is important! It sets the base directory for paths
+    "paths": {
+      "@/*": ["./src/*"] // Maps '@/' to the 'src/' directory
+    },
 
     /* Bundler mode */
     "moduleResolution": "bundler",

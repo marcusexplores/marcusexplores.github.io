@@ -1,3 +1,20 @@
+# Import Statement Order Convention
+1. Built-in Imports
+   - Node.js Built-ins: (fs, path, os, etc.)
+2. Core Imports
+   - Framework/Library Core: The most essential package for your environment (e.g., react must come first in a React file)
+3. External (Third-Party) Imports
+4. Internal Imports
+   - Absolute Paths/Aliases: Imports referencing custom modules via configured aliases (@/, ~/, etc.).
+5. Relative Imports
+   - Parent/Up-Level Imports: (../, ../../)
+   - Sibling/Current-Level Imports: (./, ./components/, etc.)
+6. Style Imports
+   - Global Styles/CSS: Files with no bindings (no default or named exports).
+   - Stylesheets for the current file.
+7. Asset Imports
+   - Images / Data
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

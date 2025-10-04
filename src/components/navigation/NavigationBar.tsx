@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router";
-import { NAVIGATION_KEY } from "./constants";
-import { navigationItems } from "./data/items";
-import { isHomePage } from "./helpers";
 import { NavigationMenuIcon } from "./NavigationMenuIcon";
 import { NavigationMenuCloseIcon } from "./NavigationMenuCloseIcon";
+import { NAVIGATION_KEY } from "./constants";
+import { isHomePage } from "./helpers";
+import { navigationItems } from "./data/items";
 
 export const NavigationBar = () => {
   const location = useLocation();
