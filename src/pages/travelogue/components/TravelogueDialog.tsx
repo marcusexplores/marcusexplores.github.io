@@ -1,4 +1,5 @@
 import { CalendarDays, MapPin, ExternalLink } from "lucide-react";
+import { resolveImagePath } from "@/functions/image";
 import { Dialog } from "@/components/dialog/Dialog";
 import { DialogTrigger } from "@/components/dialog/DialogTrigger";
 import { DialogContent } from "@/components/dialog/DialogContent";
@@ -52,7 +53,7 @@ export const TravelogueDialog = ({
           {image && (
             <div className="aspect-video w-full rounded-lg overflow-hidden">
               <img
-                src={image}
+                src={resolveImagePath(image)}
                 alt={title}
                 className="w-full h-full object-cover"
               />
