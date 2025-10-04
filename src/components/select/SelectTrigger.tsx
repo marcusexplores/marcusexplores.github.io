@@ -1,6 +1,6 @@
-import { cn } from "../../functions/cn";
 import * as SelectPrimitive from "@radix-ui/react-select";
 import { ChevronDownIcon } from "lucide-react";
+import { cn } from "@/functions/cn";
 
 type SelectTriggerProps = React.ComponentProps<
   typeof SelectPrimitive.Trigger

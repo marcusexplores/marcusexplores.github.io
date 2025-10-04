@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { Filter, X } from "lucide-react";
-import { TRAVELOGUE_FILTER_PROPERTY, TRAVELOGUE_FILTER_DURATION_OPTION, TRAVELOGUE_FILTER_REGION_OPTION } from "../constants"
+import { Badge } from "@/components/badge/Badge";
+import { Button } from "@/components/button/Button";
+import { Select } from "@/components/select/Select";
+import { SelectContent } from "@/components/select/SelectContent";
+import { SelectItem } from "@/components/select/SelectItem";
+import { SelectTrigger } from "@/components/select/SelectTrigger";
+import { SelectValue } from "@/components/select/SelectValue";
+import { InputSearch } from "@/components/input/InputSearch";
 import type { TravelogueFilterState } from "../types";
-import { Badge } from "../../../components/badge/Badge";
-import { Button } from "../../../components/button/Button";
-import { Select } from "../../../components/select/Select";
-import { SelectContent } from "../../../components/select/SelectContent";
-import { SelectItem } from "../../../components/select/SelectItem";
-import { SelectTrigger } from "../../../components/select/SelectTrigger";
-import { SelectValue } from "../../../components/select/SelectValue";
-import { InputSearch } from "../../../components/input/InputSearch";
+import { TRAVELOGUE_FILTER_PROPERTY, TRAVELOGUE_FILTER_DURATION_OPTION, TRAVELOGUE_FILTER_REGION_OPTION } from "../constants"
 
 
 interface TravelogueFiltersProps {

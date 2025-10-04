@@ -1,7 +1,7 @@
-import { cn } from "../../../functions/cn";
 import { CalendarDays, MapPin } from "lucide-react";
-import { Badge } from "../../../components/badge/Badge";
-import { badgeVariant } from "../../../components/badge/constants";
+import { cn } from "@/functions/cn";
+import { Badge } from "@/components/badge/Badge";
+import { badgeVariant } from "@/components/badge/constants";
 import { TravelogueDialog } from "./TravelogueDialog";
 
 interface TravelogueCardProps {

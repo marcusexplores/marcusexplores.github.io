@@ -1,11 +1,11 @@
 import { useState, useMemo } from "react";
-import type { TravelogueFilterState } from "./types";
-import { travelTrips } from "./data/travel-trips";
+import { Separator } from "@/components/separator/Separator";
 import { TravelogueFilters } from "./components/TravelogueFilters";
 import { TravelogueCard } from "./components/TravelogueCard";
-import { Separator } from "../../components/separator/Separator";
-import { formatDate, getDaysBetween } from "./helpers/datetime";
+import type { TravelogueFilterState } from "./types";
 import { TRAVELOGUE_FILTER_DURATION_OPTION } from "./constants";
+import { formatDate, getDaysBetween } from "./helpers/datetime";
+import { travelTrips } from "./data/travel-trips";
 
 export const TraveloguePage = () => {
   const [filterState, setFilterState] = useState<TravelogueFilterState>({
