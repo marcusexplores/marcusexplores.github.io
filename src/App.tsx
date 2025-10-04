@@ -4,10 +4,11 @@ import { HomePage } from "@/pages/home/HomePage";
 import { TraveloguePage } from "@/pages/travelogue/TraveloguePage";
 import { NavigationBar } from "@/components/navigation/NavigationBar";
 import { NAVIGATION_KEY } from "@/components/navigation/constants";
-import { isHomePage } from '@/components/navigation/helpers';
+import { isHomePage } from "@/components/navigation/helpers";
 
 export default function App() {
-  const location = useLocation(); 
+  const location = useLocation();
+
   return (
     <>
       <NavigationBar />
