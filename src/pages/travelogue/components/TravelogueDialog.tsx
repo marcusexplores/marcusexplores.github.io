@@ -72,7 +72,7 @@ export const TravelogueDialog = ({
 
           {/* Description */}
           <div className="space-y-2">
-            <h4>About this trip</h4>
+            <h4 className="text-foreground">About this trip</h4>
             <p className="text-muted-foreground leading-relaxed">
               {description}
             </p>

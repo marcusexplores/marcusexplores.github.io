@@ -47,7 +47,7 @@ export function TravelogueFilters({
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 text-foreground">
           <h2>Travel Stories</h2>
           <Badge variant="outline">{totalResults} {totalResults === 1 ? 'story' : 'stories'}</Badge>
         </div>

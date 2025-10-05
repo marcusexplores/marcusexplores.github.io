@@ -44,8 +44,8 @@ export const HomePage = () => {
           </header>
 
           {/* Content Section */}
-          <SectionContent className="bg-chart-1 text-gray-300">
-            <h2 className="text-4xl font-bold text-center text-white mb-12">
+          <SectionContent className="text-foreground">
+            <h2 className="text-4xl font-bold text-center mb-12">
               Our Content Section
             </h2>
             <p className="mb-6 text-lg leading-relaxed">
@@ -70,8 +70,8 @@ export const HomePage = () => {
             {/* Parallax-like section */}
           </SectionCover>
 
-          <SectionContent className="bg-chart-1 text-gray-300">
-            <h2 className="text-4xl font-bold text-center text-white mb-12">
+          <SectionContent className="text-foreground">
+            <h2 className="text-4xl font-bold text-center mb-12">
               More to Discover
             </h2>
             <p className="mb-6 text-lg leading-relaxed">
