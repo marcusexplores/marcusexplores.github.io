@@ -1,0 +1,1 @@
+export const LOAD_DURATION_MS = 2000;
