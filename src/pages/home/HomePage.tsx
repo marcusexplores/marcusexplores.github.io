@@ -3,8 +3,10 @@ import { AnimatePresence } from "motion/react";
 import { LoadingScreen } from "@/components/loading/LoadingScreen";
 import { LOAD_DURATION_MS } from "@/components/loading/constants";
 import { SectionContent } from "@/components/section/SectionContent";
+import { SectionHero } from "@/components/section/SectionHero";
 import { SectionCover } from "@/components/section/SectionCover";
 import heroBackgroundImg from "@/assets/home_hero_banner.jpg";
+import { HomePhotoMarquee } from "./components/HomePhotoMarquee";
 
 export const HomePage = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -42,6 +44,10 @@ export const HomePage = () => {
               </p>
             </div>
           </header>
+
+          <SectionHero className="bg-gradient-to-br from-amber-50 to-orange-100">
+            <HomePhotoMarquee />
+          </SectionHero>
 
           {/* Content Section */}
           <SectionContent className="text-foreground">
