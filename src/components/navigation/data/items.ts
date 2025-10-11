@@ -11,3 +11,11 @@ export const navigationItems: DeepReadonly<NavigationItem[]> = [
     label: "Travelogue",
   },
 ];
+
+export const navigationMenuItems: DeepReadonly<NavigationItem[]> = [
+  {
+    key: NAVIGATION_KEY.HOME,
+    label: "Home",
+  },
+  ...navigationItems
+];

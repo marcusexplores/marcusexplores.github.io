@@ -62,5 +62,59 @@ export const travelTrips: DeepReadonly<TravelTrip[]> = [
     description: "Chasing the first cherry blossoms across Japan, experiencing the magic of Hanami in Tokyo and Kyoto alongside vibrant cultural traditions and ancient temples.",
     imageUrl: "@/assets/travelogue/march-to-japan.jpg",
     website: "https://marchtojapan.web.app"
+  },
+  {
+    title: "March To Japan",
+    region: "Japan",
+    startDate: "2023-03-19",
+    endDate: "2023-04-02",
+    description: "Chasing the first cherry blossoms across Japan, experiencing the magic of Hanami in Tokyo and Kyoto alongside vibrant cultural traditions and ancient temples.",
+    imageUrl: "@/assets/travelogue/march-to-japan.jpg",
+    website: "https://marchtojapan.web.app"
+  },
+  {
+    title: "March To Japan",
+    region: "Japan",
+    startDate: "2023-03-19",
+    endDate: "2023-04-02",
+    description: "Chasing the first cherry blossoms across Japan, experiencing the magic of Hanami in Tokyo and Kyoto alongside vibrant cultural traditions and ancient temples.",
+    imageUrl: "@/assets/travelogue/march-to-japan.jpg",
+    website: "https://marchtojapan.web.app"
+  },
+  {
+    title: "March To Japan",
+    region: "Japan",
+    startDate: "2023-03-19",
+    endDate: "2023-04-02",
+    description: "Chasing the first cherry blossoms across Japan, experiencing the magic of Hanami in Tokyo and Kyoto alongside vibrant cultural traditions and ancient temples.",
+    imageUrl: "@/assets/travelogue/march-to-japan.jpg",
+    website: "https://marchtojapan.web.app"
+  },
+  {
+    title: "March To Japan",
+    region: "Japan",
+    startDate: "2023-03-19",
+    endDate: "2023-04-02",
+    description: "Chasing the first cherry blossoms across Japan, experiencing the magic of Hanami in Tokyo and Kyoto alongside vibrant cultural traditions and ancient temples.",
+    imageUrl: "@/assets/travelogue/march-to-japan.jpg",
+    website: "https://marchtojapan.web.app"
+  },
+  {
+    title: "March To Japan",
+    region: "Japan",
+    startDate: "2023-03-19",
+    endDate: "2023-04-02",
+    description: "Chasing the first cherry blossoms across Japan, experiencing the magic of Hanami in Tokyo and Kyoto alongside vibrant cultural traditions and ancient temples.",
+    imageUrl: "@/assets/travelogue/march-to-japan.jpg",
+    website: "https://marchtojapan.web.app"
+  },
+  {
+    title: "March To Japan",
+    region: "Japan",
+    startDate: "2023-03-19",
+    endDate: "2023-04-02",
+    description: "Chasing the first cherry blossoms across Japan, experiencing the magic of Hanami in Tokyo and Kyoto alongside vibrant cultural traditions and ancient temples.",
+    imageUrl: "@/assets/travelogue/march-to-japan.jpg",
+    website: "https://marchtojapan.web.app"
   }
 ];

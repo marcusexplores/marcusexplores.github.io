@@ -1,113 +1,108 @@
-import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router";
-import { ThemeSwitcher } from "@/components/theme/ThemeSwitcher";
-import { NavigationMenuIcon } from "./NavigationMenuIcon";
-import { NavigationMenuCloseIcon } from "./NavigationMenuCloseIcon";
-import { NAVIGATION_KEY } from "./constants";
-import { isHomePage } from "./helpers";
-import { navigationItems } from "./data/items";
+import { useState, useEffect, useCallback, useMemo } from "react";
+import { motion } from "motion/react";
+import { NavigationMenu } from "./NavigationMenu";
+import { NavigationBarCenter } from "./NavigationBarCenter";
+import { NavigationBarLeft } from "./NavigationBarLeft";
+import { NavigationBarRight } from "./NavigationBarRight";
+
+const SCROLL_THRESHOLD = 80; // Distance in pixels to scroll before the background changes and hiding logic activates
 
 export const NavigationBar = () => {
-  const location = useLocation();
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+  const [prevScrollY, setPrevScrollY] = useState(0);
+  const [isVisible, setIsVisible] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Effect to handle scroll event
-  useEffect(() => {
-    const handleScroll = () => {
-      // Set state based on scroll position
-      if (window.scrollY > 10) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
+  // Determine appearance based on scroll position
+  const isScrolledDown = scrollY > SCROLL_THRESHOLD;
+
+  // Set the header's dynamic style classes
+  const headerClass = useMemo(() => {
+    return `fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out px-4 md:px-8 py-4
+      ${
+        isScrolledDown
+          ? "bg-gray-900 shadow-xl border-b border-gray-700"
+          : "bg-transparent border-b border-transparent"
+      }`;
+  }, [isScrolledDown]);
+
+  // Framer Motion variants for the hide/show animation
+  const navVariants = {
+    visible: { y: 0, opacity: 1 },
+    hidden: { y: "-100%", opacity: 0 },
+  };
+
+  // Debounced scroll handler logic
+  const handleScroll = useCallback(() => {
+    const currentScrollY = window.scrollY;
+
+    // Background and initial state logic
+    setScrollY(currentScrollY);
+
+    // Hiding/Showing logic (only if scrolled past the threshold)
+    if (currentScrollY > SCROLL_THRESHOLD) {
+      // Scrolling down: hide the navbar
+      if (currentScrollY > prevScrollY) {
+        setIsVisible(false);
       }
-    };
+      // Scrolling up: show the navbar
+      else if (currentScrollY < prevScrollY) {
+        setIsVisible(true);
+      }
+    } else {
+      // Always visible at the top
+      setIsVisible(true);
+    }
 
-    // Add event listener when the component mounts
+    setPrevScrollY(currentScrollY);
+  }, [prevScrollY]);
+
+  // Attach scroll listener
+  useEffect(() => {
     window.addEventListener("scroll", handleScroll);
-
-    // Remove event listener when the component unmounts
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []); // Empty dependency array means this effect runs only once on mount
+  }, [handleScroll]);
+
+  // Close menu when links are clicked or scroll state changes
+  const handleNavigationItemClick = () => {
+    if (isMenuOpen) {
+      setIsMenuOpen(false);
+    }
+  };
+
+  const handleMenuIconClick = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
+
+  // Close menu if scrolling down
+  useEffect(() => {
+    if (!isVisible && isMenuOpen) {
+      setIsMenuOpen(false);
+    }
+  }, [isVisible, isMenuOpen]);
 
   return (
     <>
-      <nav
-        className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ease-in-out ${
-          isHomePage(location.pathname)
-            ? isScrolled
-              ? "bg-primary shadow-lg"
-              : "bg-transparent"
-            : "bg-primary shadow-lg"
-        }`}
+      <motion.div
+        className={headerClass}
+        initial="visible"
+        animate={isVisible ? "visible" : "hidden"}
+        variants={navVariants}
+        transition={{ duration: 0.2 }}
       >
-        <div className="px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-15">
-            {/* Logo */}
-            <div className="flex-shrink-0">
-              <Link
-                to={NAVIGATION_KEY.HOME}
-                className="text-white text-2xl font-bold tracking-wider"
-              >
-                LOGO
-              </Link>
-            </div>
-
-            {/* Desktop Navigation Links */}
-            <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-8">
-                {navigationItems.map((item, index) => (
-                  <Link
-                    key={index}
-                    to={item.key}
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-                <ThemeSwitcher />
-              </div>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <div className="-mr-2 flex md:hidden">
-              <button
-                onClick={() => { setIsMenuOpen(!isMenuOpen) }}
-                type="button"
-                className="bg-gray-900/50 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-                aria-controls="mobile-menu"
-                aria-expanded="false"
-              >
-                <span className="sr-only">Open main menu</span>
-                {isMenuOpen ? (
-                  <NavigationMenuCloseIcon className="block h-6 w-6" />
-                ) : (
-                  <NavigationMenuIcon className="block h-6 w-6" />
-                )}
-              </button>
-            </div>
-          </div>
+        <div className="flex justify-between items-center max-w-7xl mx-auto">
+          <NavigationBarLeft isMenuOpen={isMenuOpen} onMenuClick={handleMenuIconClick} onLogoClick={handleNavigationItemClick} />
+          <NavigationBarCenter onLogoClick={handleNavigationItemClick} />
+          <NavigationBarRight onNavigationItemClick={handleNavigationItemClick} />
         </div>
+      </motion.div>
 
-        {/* Mobile Menu, show/hide based on menu state. */}
-        {isMenuOpen && (
-          <div className="md:hidden" id="mobile-menu">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-black">
-              {navigationItems.map((item, index) => (
-                <Link
-                  key={index}
-                  to={item.key}
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
-      </nav>
+      {isMenuOpen && (
+        <NavigationMenu isScrolledDown={isScrolledDown} onItemClick={handleNavigationItemClick}
+        />
+      )}
     </>
   );
 };

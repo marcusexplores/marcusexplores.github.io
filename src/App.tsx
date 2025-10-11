@@ -13,7 +13,7 @@ export default function App() {
   return (
     <ThemeProvider>
       <NavigationBar />
-      <main className={isHomePage(location.pathname) ? "bg-background" : "bg-background pt-20"}>
+      <main className={isHomePage(location.pathname) ? "" : "pt-20"}>
         <Routes>
           <Route index element={<HomePage />} />
           <Route path={NAVIGATION_KEY.TRAVELOGUE} element={<TraveloguePage />} />
