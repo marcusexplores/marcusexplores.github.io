@@ -45,7 +45,7 @@ export const HomePage = () => {
             </div>
           </header>
 
-          <SectionHero className="bg-gradient-to-br from-amber-50 to-orange-100">
+          <SectionHero>
             <HomePhotoMarquee />
           </SectionHero>
 

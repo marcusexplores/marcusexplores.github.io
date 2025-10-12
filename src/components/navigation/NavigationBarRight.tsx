@@ -15,7 +15,7 @@ export const NavigationBarRight = ({ onNavigationItemClick }: NavigationBarRight
             key={index}
             to={item.key}
             onClick={onNavigationItemClick}
-            className={`relative text-base font-medium transition-colors duration-300 text-foreground hover:text-indigo-400`}
+            className={`relative text-base font-medium transition-colors duration-300 text-primary-foreground hover:text-indigo-400`}
           >
             {item.label}
             <span className="absolute left-0 bottom-0 block h-[2px] w-0 bg-indigo-500 transition-all duration-300 group-hover:w-full"></span>

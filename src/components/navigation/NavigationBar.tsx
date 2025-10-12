@@ -5,7 +5,7 @@ import { NavigationBarCenter } from "./NavigationBarCenter";
 import { NavigationBarLeft } from "./NavigationBarLeft";
 import { NavigationBarRight } from "./NavigationBarRight";
 
-const SCROLL_THRESHOLD = 80; // Distance in pixels to scroll before the background changes and hiding logic activates
+const SCROLL_THRESHOLD = 20; // Distance in pixels to scroll before the background changes and hiding logic activates
 
 export const NavigationBar = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -19,7 +19,7 @@ export const NavigationBar = () => {
   // Set the header's dynamic style classes
   const headerClass = useMemo(() => {
     return `fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out px-4 md:px-8 py-4
-      ${isScrolledDown ? "bg-gray-900 " : "bg-transparent"}`;
+      ${isScrolledDown ? "bg-primary " : "bg-transparent"}`;
   }, [isScrolledDown]);
 
   // Framer Motion variants for the hide/show animation
