@@ -50,7 +50,7 @@ export const HomePage = () => {
           </SectionHero>
 
           {/* Content Section */}
-          <SectionContent className="text-foreground">
+          <SectionContent>
             <h2 className="text-4xl font-bold text-center mb-12">
               Our Content Section
             </h2>
@@ -76,7 +76,7 @@ export const HomePage = () => {
             {/* Parallax-like section */}
           </SectionCover>
 
-          <SectionContent className="text-foreground">
+          <SectionContent>
             <h2 className="text-4xl font-bold text-center mb-12">
               More to Discover
             </h2>
