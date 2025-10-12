@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from "react";
-import { motion } from "motion/react";
 import { cn } from "@/functions/cn";
 import type { Theme } from "./types";
 import { useTheme } from "./hooks";
@@ -31,10 +30,7 @@ export const ThemeSwitcher = ({ className }: ThemeSwitcherProps) => {
 
   return (
     <div
-      className={cn(
-        "relative isolate flex h-8 rounded-full bg-background p-1 ring-1 ring-border",
-        className
-      )}
+      className={cn("relative isolate flex h-8 rounded-full p-1", className)}
     >
       {themes.map(({ key, icon: Icon, label }) => {
         const isActive = theme === key;
@@ -44,15 +40,13 @@ export const ThemeSwitcher = ({ className }: ThemeSwitcherProps) => {
             aria-label={label}
             className="relative h-6 w-6 rounded-full"
             key={key}
-            onClick={() => { handleThemeClick(key as Theme); }}
+            onClick={() => {
+              handleThemeClick(key as Theme);
+            }}
             type="button"
           >
             {isActive && (
-              <motion.div
-                className="absolute inset-0 rounded-full bg-secondary"
-                layoutId="activeTheme"
-                transition={{ type: "spring", duration: 0.5 }}
-              />
+              <div className="absolute inset-0 rounded-full bg-secondary" />
             )}
             <Icon
               className={cn(

@@ -1,12 +1,7 @@
-import { Monitor, Moon, Sun } from "lucide-react";
+import { Moon, Sun } from "lucide-react";
 import { THEME } from "./constants";
 
 export const themes = [
-  {
-    key: THEME.SYSTEM,
-    icon: Monitor,
-    label: `${THEME.SYSTEM} theme`,
-  },
   {
     key: THEME.LIGHT,
     icon: Sun,
