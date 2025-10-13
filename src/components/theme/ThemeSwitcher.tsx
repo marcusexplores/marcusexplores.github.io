@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { cn } from "@/functions/cn";
+import { cn } from "@/functions/classname";
 import type { Theme } from "./types";
 import { useTheme } from "./hooks";
 import { themes } from "./data";

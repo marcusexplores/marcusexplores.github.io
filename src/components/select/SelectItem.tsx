@@ -1,6 +1,6 @@
 import * as SelectPrimitive from "@radix-ui/react-select";
 import { CheckIcon } from "lucide-react"
-import { cn } from "@/functions/cn";
+import { cn } from "@/functions/classname";
 
 type SelectItemProps = React.ComponentProps<typeof SelectPrimitive.Item>;
 

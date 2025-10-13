@@ -1,4 +1,4 @@
-import { cn } from "@/functions/cn";
+import { cn } from "@/functions/classname";
 
 type DialogFooterProps = React.ComponentProps<"div">;
 

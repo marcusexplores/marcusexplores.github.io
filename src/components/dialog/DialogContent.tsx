@@ -1,5 +1,5 @@
 import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { cn } from "@/functions/cn";
+import { cn } from "@/functions/classname";
 import { DialogPortal } from "./DialogPortal";
 import { DialogOverlay } from "./DialogOverlay";
 

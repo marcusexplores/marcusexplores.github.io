@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { cn } from "@/functions/cn";
+import { cn } from "@/functions/classname";
 import { NAVIGATION_KEY } from "./constants";
 
 interface NavigationLogoProps {

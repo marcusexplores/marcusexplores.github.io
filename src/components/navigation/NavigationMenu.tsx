@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import { motion } from "motion/react";
-import { cn } from "@/functions/cn";
+import { cn } from "@/functions/classname";
 import { navigationMenuItems } from "./data/items";
 import { NavigationMenuBackdrop } from "./NavigationMenuBackdrop";
 

@@ -1,6 +1,6 @@
 import * as SelectPrimitive from "@radix-ui/react-select";
 import { ChevronUpIcon } from "lucide-react"
-import { cn } from "@/functions/cn";
+import { cn } from "@/functions/classname";
 
 type SelectScrollUpButtonProps = React.ComponentProps<typeof SelectPrimitive.ScrollUpButton>;
 

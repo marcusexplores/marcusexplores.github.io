@@ -1,5 +1,5 @@
 import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { cn } from "@/functions/cn";
+import { cn } from "@/functions/classname";
 
 type DialogDescriptionProps = React.ComponentProps<typeof DialogPrimitive.Description>;
 

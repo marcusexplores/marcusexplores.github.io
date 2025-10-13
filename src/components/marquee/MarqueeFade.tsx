@@ -1,5 +1,5 @@
 import type { HTMLAttributes } from "react";
-import { cn } from "@/functions/cn";
+import { cn } from "@/functions/classname";
 
 type MarqueeFadeProps = HTMLAttributes<HTMLDivElement> & {
   side: "left" | "right";

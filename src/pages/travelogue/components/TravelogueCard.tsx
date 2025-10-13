@@ -1,6 +1,6 @@
 import { motion } from "motion/react"
 import { CalendarDays, MapPin } from "lucide-react";
-import { cn } from "@/functions/cn";
+import { cn } from "@/functions/classname";
 import { resolveImagePath } from "@/functions/image";
 import { Badge } from "@/components/badge/Badge";
 import { badgeVariant } from "@/components/badge/constants";
