@@ -2,11 +2,25 @@ import { Link, useLocation } from "react-router";
 import { Button } from "@/components/button/Button";
 import { NAVIGATION_KEY } from "@/components/navigation/constants";
 
+const transformPath = (input: string) => {
+  const pattern1 = /^\/#\/(.*?)\/(.*)$/;
+  const match1 = pattern1.exec(input);
+  if (match1) {
+    return `/${match1[1]}/#/${match1[2]}`;
+  }
+
+  const pattern2 = /^\/#\/(.*)$/;
+  const match2 = pattern2.exec(input);
+  if (match2) {
+    return `/${match2[1]}`;
+  }
+
+  return input;
+}
+
 export const NotFoundPage = () => {
   const location = useLocation();
-  const domainName = window.location.hostname;
-
-  const redirectUrl = domainName + location.pathname.replace(/\/(.+)$/, '/#/$1');
+  const redirectUrl = transformPath(location.pathname);
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-blue-50 text-gray-800 font-sans p-4">
