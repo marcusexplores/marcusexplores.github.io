@@ -35,7 +35,7 @@ export const NotFoundPage = () => {
           className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105"
         >
           {/* Redirect to GitHub Pages if it exist */}
-          <Link to={redirectUrl}>Redirect</Link>
+          <a href={redirectUrl}>Redirect</a>
         </Button>
       </div>
       <div className="max-w-md w-full mt-8">{/* The image will go here */}</div>
