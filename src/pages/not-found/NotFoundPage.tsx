@@ -8,9 +8,6 @@ export const NotFoundPage = () => {
   
   const redirectUrl = "https://" + domainName + location.pathname.replace(new RegExp("^\\/([^\\/]+)\\/(.*)$"), '/$1/#/$2')
 
-  console.log("Path: " + location.pathname)
-  console.log("Redirect: " + redirectUrl)
-
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-blue-50 text-gray-800 font-sans p-4">
       <div className="text-center mb-8">
